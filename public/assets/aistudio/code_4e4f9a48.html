@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary": "#ffffff", "on-error": "#ffffff", "surface": "#f9f9ff", "inverse-on-surface": "#ebf1ff", "on-tertiary-fixed": "#1c192d", "on-secondary-fixed-variant": "#3a4858", "on-error-container": "#93000a", "on-surface": "#111c2c", "secondary-container": "#d5e4f8", "on-primary": "#ffffff", "secondary": "#516070", "surface-container-lowest": "#ffffff", "inverse-primary": "#b2c7ee", "tertiary-container": "#2b283d", "on-primary-fixed-variant": "#324768", "surface-dim": "#cfdaf1", "surface-container-high": "#dee9ff", "on-secondary-fixed": "#0e1d2b", "tertiary-fixed-dim": "#c9c3df", "surface-variant": "#d8e3fa", "on-tertiary-fixed-variant": "#48445b", "error": "#ba1a1a", "primary": "#001632", "tertiary": "#171328", "outline": "#74777e", "on-primary-fixed": "#021c3a", "on-surface-variant": "#44474e", "outline-variant": "#c4c6ce", "on-tertiary-container": "#948ea9", "error-container": "#ffdad6", "background": "#f9f9ff", "on-secondary-container": "#576676", "surface-container-low": "#f0f3ff", "surface-container-highest": "#d8e3fa", "inverse-surface": "#263142", "on-secondary": "#ffffff", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "primary-container": "#142b4a", "secondary-fixed": "#d5e4f8", "surface-tint": "#4a5f81", "primary-fixed-dim": "#b2c7ee", "on-background": "#111c2c", "secondary-fixed-dim": "#b9c8db", "primary-fixed": "#d5e3ff", "on-primary-container": "#7d93b7", "tertiary-fixed": "#e6dffb" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin": "3rem", "space-md": "1rem", "space-xl": "2.5rem", "space-lg": "1.5rem", "gutter-mobile": "1rem", "margin-mobile": "1.25rem", "gutter": "1.5rem", "space-xs": "0.25rem", "space-sm": "0.5rem" }, fontFamily: { "headline-sm": ["Manrope"], "display-lg": ["Manrope"], "body-lg": ["Inter"], "label-sm": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Manrope"], "label-md": ["Inter"], "body-sm": ["Inter"], "display-lg-mobile": ["Manrope"], "headline-md": ["Manrope"], "headline-lg-mobile": ["Manrope"], "label-lg": ["Inter"] }, fontSize: { "headline-sm": ["20px", { lineHeight: "28px", letterSpacing: "-0.005em", fontWeight: "600" }], "display-lg": ["56px", { lineHeight: "64px", letterSpacing: "-0.03em", fontWeight: "800" }], "body-lg": ["18px", { lineHeight: "28px", letterSpacing: "-0.005em", fontWeight: "400" }], "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "700" }], "body-md": ["15px", { lineHeight: "22px", letterSpacing: "0em", fontWeight: "400" }], "headline-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }], "body-sm": ["13px", { lineHeight: "18px", letterSpacing: "0em", fontWeight: "400" }], "display-lg-mobile": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "800" }], "headline-md": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-lg-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "700" }], "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;min-height:100%;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col antialiased min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(20,43,74,0.04)] pt-safe"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="POSARA Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrD_795EGk3vXYXvCHbXBgWAdZDTcKpTZU0VwHzxffgrU4bAFpGBTo9SBKXsoG577YiF7bQefhl_WOmGjyuX6XZUgcdO-gf5GP-xn2Ts7VoVuF7zV-1vx54WgeOkv-v4hiz22K5KndcSotuUMwUYvEDdRTXU9kgDJQeISmR6MJE5PLJYE9HiaO-xyjunGhOMdmzzhIzHQMPM-U5w5DvpDaFZ3h9Kr6nd_EtvRIxEUkba"/><span class="font-headline-sm text-headline-sm text-primary-container tracking-tight">POSARA</span></div><div class="flex items-center gap-space-sm"><span class="font-label-md text-label-md text-secondary tracking-wide uppercase">Galeri</span><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_1px_4px_rgba(20,43,74,0.08)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX-O4LtlloGC1q3lrKWun2ebGcrLekPRW3C4SBqE-9JtrvbZTo7UZ-7gyQtIr58hEnhPrg_KckeCDAobb2fObB3ebGmoF9aninOE5603ZA-EM4S5hOQoSbdbwUP9p-Iuz6mCWH7Fbv4yl3ZbMj7eWWV47LP9_rjzGL9a1pdMme8GvWR5vY0Kdu7CrEkC9Z_rY1stgwPonmWe5WuMQYPg8kddY0IX8x4lU0Qm3Xb5M"/></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full px-margin-mobile pb-space-xl">
+<!-- Header & Page Intro -->
+<div class="pt-space-md pb-space-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-fixed text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">photo_library</span>
+<span>Arsip Pribadi</span>
+</div>
+<button class="flex items-center gap-1 text-label-md font-label-md text-primary-container px-3 py-1.5 rounded-full bg-surface-container active:bg-surface-container-high transition-colors" id="batch-toggle">
+<span class="material-symbols-outlined text-[16px]">checklist</span>
+<span>Pilih Banyak</span>
+</button>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight mt-1">
+      Galeri Strip Foto
+    </h1>
+<p class="font-body-sm text-body-sm text-secondary">
+      Koleksi momen photobooth ceria yang tersimpan aman di perangkatmu.
+    </p>
+</div>
+<!-- Bento Stats Deck (3 Mini Summary Cards) -->
+<div class="grid grid-cols-3 gap-2.5 my-space-md">
+<!-- Stat 1: Total Strip -->
+<div class="bg-surface-container-lowest p-3 rounded-xl shadow-sm flex flex-col justify-between">
+<div class="w-7 h-7 rounded-lg bg-surface-container-high flex items-center justify-center text-primary-container mb-2">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">style</span>
+</div>
+<div>
+<span class="font-headline-sm text-headline-sm text-primary block leading-none font-bold">12</span>
+<span class="font-label-sm text-label-sm text-secondary mt-1 block">Strip Tersimpan</span>
+</div>
+</div>
+<!-- Stat 2: Sesi Bulan Ini -->
+<div class="bg-primary-fixed/40 p-3 rounded-xl shadow-sm flex flex-col justify-between">
+<div class="w-7 h-7 rounded-lg bg-primary-container flex items-center justify-center text-on-primary mb-2">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+</div>
+<div>
+<span class="font-headline-sm text-headline-sm text-primary block leading-none font-bold">4</span>
+<span class="font-label-sm text-label-sm text-on-primary-fixed-variant mt-1 block">Sesi Bulan Ini</span>
+</div>
+</div>
+<!-- Stat 3: Status Privasi -->
+<div class="bg-tertiary-fixed/60 p-3 rounded-xl shadow-sm flex flex-col justify-between">
+<div class="w-7 h-7 rounded-lg bg-tertiary-container flex items-center justify-center text-tertiary-fixed mb-2">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-tertiary font-bold block leading-tight">Lokal DB</span>
+<span class="font-label-sm text-label-sm text-on-tertiary-fixed-variant mt-0.5 block leading-tight">100% Privat</span>
+</div>
+</div>
+</div>
+<!-- Search Input Bar -->
+<div class="relative w-full my-space-xs">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-secondary text-[20px]">search</span>
+<input class="w-full h-11 pl-10 pr-10 rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm shadow-sm focus:outline-none focus:bg-surface-container-low transition-all" placeholder="Cari berdasarkan judul momen atau tanggal..." type="text"/>
+<button class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-secondary text-[18px] hover:text-primary transition-colors">tune</button>
+</div>
+<!-- Horizontal Filter Chips Carousel -->
+<div class="flex items-center gap-2 overflow-x-auto py-2 -mx-margin-mobile px-margin-mobile no-scrollbar">
+<button class="shrink-0 px-3.5 py-1.5 rounded-full bg-primary-container text-on-primary font-label-md text-label-md shadow-sm">
+      Semua (12)
+    </button>
+<button class="shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-secondary font-label-md text-label-md shadow-sm active:bg-surface-container transition-colors">
+      Bulan Ini (4)
+    </button>
+<button class="shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-secondary font-label-md text-label-md shadow-sm flex items-center gap-1 active:bg-surface-container transition-colors">
+<span>Favorit</span>
+<span class="material-symbols-outlined text-[14px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-label-sm text-outline">(3)</span>
+</button>
+<button class="shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-secondary font-label-md text-label-md shadow-sm active:bg-surface-container transition-colors">
+      4-Frame
+    </button>
+<button class="shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-secondary font-label-md text-label-md shadow-sm active:bg-surface-container transition-colors">
+      Klasik 3-Frame
+    </button>
+</div>
+<!-- Batch Action Sticky Toast Bar (Hidden by default, toggled via JS) -->
+<div class="hidden items-center justify-between p-3 mt-2 mb-3 rounded-xl bg-primary-container text-on-primary shadow-md" id="batch-action-bar">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary-fixed">check_circle</span>
+<span class="font-label-md text-label-md"><span id="selected-count">2</span> strip terpilih</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 rounded-lg bg-surface-container-lowest text-primary font-label-sm text-label-sm font-bold flex items-center gap-1 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[15px]">archive</span>
+<span>Unduh ZIP</span>
+</button>
+<button class="p-1 rounded-lg hover:bg-white/10 text-on-primary" id="batch-close">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- Photo Strip Cards Collection -->
+<div class="flex flex-col gap-4 mt-space-sm">
+<!-- Card 1: Weekend Hangout & Coffee (Featured 4-Frame Navy Cut) -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm flex flex-col gap-3 group">
+<div class="flex items-start justify-between">
+<div class="flex flex-col min-w-0 pr-2">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-50 text-amber-800 text-[10px] font-bold">
+<span class="material-symbols-outlined text-[12px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+              Favorit
+            </span>
+<span class="text-label-sm font-label-sm text-outline">• 24 Okt 2024</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary truncate font-bold">
+            Weekend Hangout &amp; Coffee
+          </h2>
+<p class="font-body-sm text-body-sm text-secondary truncate">
+            Format: 4-Frame Navy Modern • Kafe Senopati
+          </p>
+</div>
+<button class="text-secondary hover:text-primary p-1 rounded-full">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+<!-- Photobooth Strip Visual Representation (4-Cut Realistic Preview) -->
+<div class="w-full bg-primary-container p-3 rounded-xl shadow-inner flex flex-col items-center gap-2.5">
+<div class="w-full grid grid-cols-2 gap-2">
+<div class="aspect-[4/3] rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Young cheerful Indonesian female smiling holding an iced artisan latte in a sunlit modern aesthetic cafe with lush monstera plants, captured in authentic candid photobooth natural light style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOdfU98Do_dasr1RlunUtZUPbyAt1Q7W40Gj8023LWxnTu8lzlS_JFQU48zeAwaOBgI4QRqX5qRVCYxzU4n5rM5SRmQ99kKxsavnqfRpC_-AYcf7S9zTbgAwNmg9w8EYwOxtOBSOYGcc57hdgnixI0PUnVr0s9qDtufQXufy9yCI_GAA8X1ySzYHn_QywMz-3bWXxiw0pIw2VZnboGmrbOpt7PgCElAKBq_WsYbSM"/>
+</div>
+<div class="aspect-[4/3] rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Two best friends laughing wholeheartedly together making playful peace hand signs over a rustic cafe wooden table, natural warm afternoon sunlight, crisp medium shot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvQduMU2L3PQ1cz4umfT5jiveDeHhiVSOF-mrCmHeoyof5XkkWMUq1xAsS5ri9cv-bZKrH7XRjiTrhYYDgcDAFUbJ-sCP4DSBOuIRjlnBU_bsztzAWV98FF-9WoO66s6fPPpP4RUz8Js6y2ET2P5X0oc7UiP7H3XY-Teg2aGhRCVtzTJc95_dQRVrw50XLN-xbDUHWBHCsvUnABXeDc7fLV7ISB4blw32_1ihX5BU"/>
+</div>
+<div class="aspect-[4/3] rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Close up playful portrait of two young Asian adults making silly wink faces in a stylish photobooth setting, soft contrast pastel tone" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOQY5eYpjrsKVp_SvToSjJDsWPpMw9gTYe4XlLHaevXca5t6EAsYr4VSNgSpxASG2zdPnCGfEhWTjw93udetj6vFxOepJ2n1x9FOFiR-tjbM20g3PlX7KwvPQFsfsk5QOYIDhJPD21p2faQ8dY4UZFH6s4cZW1b8XSuVKLb-15JTJ9vtlV_888OcZTD34tl5PiTE2s-TEVgqNr2qccXGCLqdfcq3w7BxumwPvc_zc"/>
+</div>
+<div class="aspect-[4/3] rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Over the shoulder candid shot clinking two ceramic coffee mugs with latte art foam, gentle warm lens flare, photobooth film grain effect" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj74j49t-KATZeVVyDJd9GfbZyTM4kcPipqdxlugmrSKj7uYG9K80682QcQabkBTd_sI4PiMTw67QpXR16GSn5XQlAqyair5yyuuiPH5uR9rpjgPrBY77mPdEbxJld4ERsJhpMnEHsBTOEZnZZPpVmDuPsSD17fBcWALACQooTaFVjcElUgABpIAipkOWtNDzmsmDzuzu302yRiBxbysiCMXeMgMLQf1HEwsROe8c"/>
+</div>
+</div>
+<!-- Photobooth Stamp Footer Bar -->
+<div class="w-full flex items-center justify-between px-1 pt-1 text-on-primary">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-primary-fixed">photo_camera</span>
+<span class="font-headline-sm text-[11px] font-extrabold tracking-widest uppercase">POSARA STUDIO</span>
+</div>
+<span class="font-label-sm text-[10px] text-primary-fixed-dim tracking-wider">24.10.2024 #0421</span>
+</div>
+</div>
+<!-- Action Footer for Card 1 -->
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-sm text-label-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">save</span> 2.4 MB • PNG HQ
+        </span>
+<div class="flex items-center gap-2">
+<button class="h-9 px-3.5 rounded-lg bg-surface-container text-primary-container font-label-md text-label-md flex items-center gap-1.5 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[16px]">share</span>
+<span>Bagikan</span>
+</button>
+<button class="h-9 px-4 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-1.5 shadow-sm active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>Unduh</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Birthday Bash Putri (Pastel 3-Cut Lavender Theme) -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm flex flex-col gap-3">
+<div class="flex items-start justify-between">
+<div class="flex flex-col min-w-0 pr-2">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="inline-flex items-center px-2 py-0.5 rounded-md bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold">
+              3-Cut Strip
+            </span>
+<span class="text-label-sm font-label-sm text-outline">• 18 Okt 2024</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary truncate font-bold">
+            Birthday Bash Putri 🎂
+          </h2>
+<p class="font-body-sm text-body-sm text-secondary truncate">
+            Format: Pastel Soft Lavender • Pesta Ulang Tahun ke-22
+          </p>
+</div>
+<button class="text-secondary hover:text-primary p-1 rounded-full">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+<!-- Photobooth Strip Visual (Vertical Lavender Strip) -->
+<div class="w-full bg-[#E9E2FF] p-3 rounded-xl shadow-inner flex flex-col items-center gap-2">
+<div class="w-full max-w-[240px] flex flex-col gap-2 mx-auto">
+<div class="aspect-[16/10] rounded-md overflow-hidden bg-surface-container-low shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Girl in pastel lavender dress celebrating 22nd birthday blowing tiny glowing sparkler candle on a minimalist Korean bento cake, celebratory warm room lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8RVanxdWMzsHPlkV3GwutAPaiOfRlgnFblA0Z_7SsPBKrKHTuhQvIxDTSxa_ZEmYn3-o98uozu_pwn0JtFk-rwuvaoke129Hbili5P8k9TfIiY310_6TRTnHsbyloOkOVpM_-OkRhmXctIu7xh0r0zJKfbJkOV806tLNxcR9_JxepWM0eEqGz9qSIKhUC5STw3BX-qqajCBz3ZM6-YEvLadpYfism61USEX-CiTg"/>
+</div>
+<div class="aspect-[16/10] rounded-md overflow-hidden bg-surface-container-low shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Group of four young women wearing colorful party hats posing enthusiastically in a photobooth with confetti fluttering around, joyful vibrant expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIyXtTAjsbK8R39hr0Wn_Tn5lW0ACZDwSpKKnDf0mkzGRxg-UV2jXoyMwNkmR0_0-_47CSbnivx4IiEEqME3EBNoKFAdhyg22NPmtD1YaUpXCnSzlE85kiC1oTl2Vbdlj2v7_Mhq59mApVnQO_WXFIVggVqkdYSxVtSinZukXwfFux3vovHjOfTXrN44t5r38gK1708L0_CsSLCsZK6fjJmxL57rn3Fn9IJUU_cU4"/>
+</div>
+<div class="aspect-[16/10] rounded-md overflow-hidden bg-surface-container-low shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Candid birthday girl smiling broadly holding metallic number balloons with soft lavender background wall, joyful authentic lifestyle photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKa_i_YCJhPqNxNhhGiAW8JUEnTeIz6pC3QB0Z4bD4FKeHABfoGpHYms3SxA8et55-g6xeNKYyQAgRYKLQl1bkZQsRbgWpi6Yke_rfz4RJD3IuOH5dVITwwJDgt2aeWLP6_3lGtjlB_tzznvBt6QQtrbaOBg_6lBIwc0Dxjdx2cbKVHY7jnqVBWZQWi_CiWt-Ms8I_DUoF5GtW6jLz0qdm6hGXGqvq2lEg9XhLKdQ"/>
+</div>
+</div>
+<div class="w-full max-w-[240px] flex items-center justify-between px-1 pt-1 text-tertiary">
+<span class="font-headline-sm text-[10px] font-extrabold tracking-wider uppercase">PUTRI'S 22ND MEMORY</span>
+<span class="font-label-sm text-[10px] font-bold">18.10.24</span>
+</div>
+</div>
+<!-- Action Footer for Card 2 -->
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-sm text-label-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">save</span> 1.8 MB • PNG HQ
+        </span>
+<div class="flex items-center gap-2">
+<button class="h-9 px-3.5 rounded-lg bg-surface-container text-primary-container font-label-md text-label-md flex items-center gap-1.5 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[16px]">share</span>
+<span>Bagikan</span>
+</button>
+<button class="h-9 px-4 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-1.5 shadow-sm active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>Unduh</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 3: Analog Vibes Duo (Film Noir Duo B&W) -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm flex flex-col gap-3">
+<div class="flex items-start justify-between">
+<div class="flex flex-col min-w-0 pr-2">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="inline-flex items-center px-2 py-0.5 rounded-md bg-inverse-surface text-inverse-on-surface text-[10px] font-bold">
+              Monokrom Film
+            </span>
+<span class="text-label-sm font-label-sm text-outline">• 05 Okt 2024</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary truncate font-bold">
+            Analog Vibes Duo
+          </h2>
+<p class="font-body-sm text-body-sm text-secondary truncate">
+            Format: Film Noir 2-Cut Duo • Tone Hitam Putih Klasik
+          </p>
+</div>
+<button class="text-secondary hover:text-primary p-1 rounded-full">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+<!-- Photobooth Strip Visual (Black Film Frame) -->
+<div class="w-full bg-[#1A1A1A] p-3 rounded-xl shadow-inner flex flex-col items-center gap-2">
+<div class="w-full max-w-[240px] flex flex-col gap-2 mx-auto">
+<div class="aspect-[4/3] rounded-md overflow-hidden bg-neutral-800 shadow-sm">
+<img class="w-full h-full object-cover grayscale contrast-125" data-alt="Editorial artistic black and white duo portrait of young creative man and woman looking straight into lens with subtle confident smiles, high contrast 35mm grain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLiku-ztVjG5GRn6-GsI8YlqRVwPy3fzLboZLseEdwskjYq-VATmI7x8MzxNY_KWnIkLVhBddAw8CykjngjzsZ83OvE6lbKIppNPxmP1tlLGD-ClbsxMOrIIt5aQg7BCgFQ7cYqP-d7B-ynauNKFssGFMrFN6o0W2pl_hS_JXKAcffJSVVHw78JbYKxRLlSydfoNP89Xz9JNar8Engt_4AbEwYevm0amhO0psX2MI"/>
+</div>
+<div class="aspect-[4/3] rounded-md overflow-hidden bg-neutral-800 shadow-sm">
+<img class="w-full h-full object-cover grayscale contrast-125" data-alt="Close up monochrome portrait couple making cute interlocking heart hands over their faces, vintage analog grain cinematic moody photobooth lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqq1DIRHPBm7gjwAGsnMB4o5ff-ss65x7Z1OXSZ22p1jxRJqKLA5FcTtwaRTIN_27Ni6wjiTsXyhvQE4EuaHklJtEStQXSuAZ5e0au3LOM35HTXx708x3ZWxCI8w-iManf5h_HsU1281myYXDBUnpu83ElYOK0Z6g7S8X0lNZZwxynD_SUqH5_X_eAaOjaBV3Ubf8gUHPFQccFCNsgSfvB-0b4MuJfn2NCG47olb8"/>
+</div>
+</div>
+<div class="w-full max-w-[240px] flex items-center justify-between px-1 pt-0.5 text-neutral-400">
+<span class="font-headline-sm text-[10px] font-mono tracking-widest uppercase">POSARA NOIR // ISO 400</span>
+<span class="font-label-sm text-[10px] font-mono">FRAME #02</span>
+</div>
+</div>
+<!-- Action Footer for Card 3 -->
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-sm text-label-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">save</span> 1.5 MB • PNG HQ
+        </span>
+<div class="flex items-center gap-2">
+<button class="h-9 px-3.5 rounded-lg bg-surface-container text-primary-container font-label-md text-label-md flex items-center gap-1.5 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[16px]">share</span>
+<span>Bagikan</span>
+</button>
+<button class="h-9 px-4 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-1.5 shadow-sm active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>Unduh</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 4: Campus Besties Squad (Peach Pastel Accent) -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm flex flex-col gap-3">
+<div class="flex items-start justify-between">
+<div class="flex flex-col min-w-0 pr-2">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="inline-flex items-center px-2 py-0.5 rounded-md bg-[#FFE8D8] text-[#7A3E1D] text-[10px] font-bold">
+              Grid Peach
+            </span>
+<span class="text-label-sm font-label-sm text-outline">• 28 Sep 2024</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary truncate font-bold">
+            Campus Besties Squad
+          </h2>
+<p class="font-body-sm text-body-sm text-secondary truncate">
+            Format: 4-Frame Peach Sunset • Wisuda &amp; Selebrasi
+          </p>
+</div>
+<button class="text-secondary hover:text-primary p-1 rounded-full">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+<!-- Photobooth Strip Visual (Peach Soft Accent Frame) -->
+<div class="w-full bg-[#FFE8D8] p-3 rounded-xl shadow-inner flex flex-col items-center gap-2">
+<div class="w-full grid grid-cols-2 gap-2">
+<div class="aspect-square rounded-md overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Cheerful college friends wearing graduation stoles and casual campus clothes posing with oversized sunglasses in a lively photobooth session" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgWunJDfFRaWyacNqLOA2oHA6d3sdzui3kd-PJGMo8uibvYH85Pv4tHAtKKG0Ht5BKcZwQZJGvW99fov-LuC9uddGilokQ2A52VgK8wIAgXRJV6wKRKaLfOqLYh0KZtKqCdxDQivahbPS8JwZoM4LqLnoGkUND_RD_aK9oOgrC_3whwggTVUx9xMNpuXQ69KU_hMa4t6W5xsOrfhsHW8MC9s1lAnQap5dsu2mh2_Q"/>
+</div>
+<div class="aspect-square rounded-md overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Group of three energetic university students hugging tightly with gigantic smiles, warm aesthetic lighting, Indonesian campus youth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv_NWxMKo6FOO5dHlOxsBpVqRu_JZheXyYVg8m6BMycIIgcceogCAMrCmH3-piQCyQhHU-n6rQmjFWECCRofpptSNrj0szZxSJaAjJgxx0hhq9obhuCX5foOSYtnvOq_ZmAgGKFqxRRicZgFTghGng6VGbG4ykTikL83OcKoLCR7dSb53p-mkqqezBFOEZx9hGW5ajHiuYoszo96W9GOwI8eVF3bpRt28ZsxaRa9s"/>
+</div>
+<div class="aspect-square rounded-md overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Students making funny duck faces together holding small handmade congratulation signs in photobooth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_ovReMznKQAHbnpLlN2Gkn_9EQMZ33QtqUUmcst9Mv94iouI7kHYQxycUqg9AS3w6KlKtcAh_1H_1AFqZLkBUYwuWqU2T5VjUjgYR_kayU0aUuHm4G9JR0Uwl2OZuULFjJ67O5rqk45p0nASQoDX_UZ5Xfu6rwkhDMsdzM316FGnLtCHyHy7PTMOXrGipzlmloxjAuoHboluohPs0TPu_Ongr1Zf4oUKYocvkpWU"/>
+</div>
+<div class="aspect-square rounded-md overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Joyous graduation group tossing yellow paper confetti in the air inside photobooth with warm peach background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxCk62bw8aiGL-RUUMj6umTCcJQYcK62CQPuo8o0dq-3fT2iuIKXGBLBlwCm4do2YHQv-u1bydvfKIOUVFQg7pTmyNpd4yb-Wx8Kr8HbxnZekZVcCeccP_u3xKQ9e-EUu8zYTWKlI5o7DpWaj3kWi9XmJxbHj7AUZARCG2g_SbGBX72MtVODOqQ1yY1dy52s94DECwsvaDaXTcQ79GBfEpSImOgSPRGNn7TKIhn3c"/>
+</div>
+</div>
+<div class="w-full flex items-center justify-between px-1 pt-0.5 text-[#5A2C14]">
+<span class="font-headline-sm text-[10px] font-bold tracking-wider uppercase">SELEBRASI KAMPUS 2024</span>
+<span class="font-label-sm text-[10px] font-medium">POSARA MEMORIES</span>
+</div>
+</div>
+<!-- Action Footer for Card 4 -->
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-sm text-label-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">save</span> 2.1 MB • PNG HQ
+        </span>
+<div class="flex items-center gap-2">
+<button class="h-9 px-3.5 rounded-lg bg-surface-container text-primary-container font-label-md text-label-md flex items-center gap-1.5 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[16px]">share</span>
+<span>Bagikan</span>
+</button>
+<button class="h-9 px-4 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-1.5 shadow-sm active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>Unduh</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Create New Memories Callout Banner -->
+<div class="my-space-md p-4 rounded-2xl bg-secondary-container/60 flex items-center justify-between gap-3 shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-xl bg-primary-container text-on-primary flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[24px]">auto_awesome</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-[15px] font-bold text-on-secondary-fixed leading-snug">
+          Ingin buat kenangan baru?
+        </h3>
+<p class="font-body-sm text-body-sm text-on-secondary-fixed-variant leading-tight">
+          Pilih template strip &amp; mulai foto sekarang.
+        </p>
+</div>
+</div>
+<a class="px-3.5 py-2 rounded-xl bg-primary-container text-on-primary font-label-md text-label-md shrink-0 shadow-sm active:scale-95 transition-transform" href="#">
+      Mulai Foto
+    </a>
+</div>
+<!-- Privacy Security Assurance Footer Box -->
+<div class="p-3.5 rounded-xl bg-surface-container-low flex items-start gap-2.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] text-primary-container shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<p class="font-body-sm text-body-sm leading-relaxed text-secondary">
+      Semua foto tersimpan di penyimpanan lokal browser Anda (<span class="font-medium text-primary">IndexedDB</span>) dan tidak diunggah ke server cloud tanpa izin eksplisit Anda.
+    </p>
+</div>
+</div>
+<script>
+  // Simple micro-interaction for batch selector toggle
+  const batchBtn = document.getElementById('batch-toggle');
+  const batchBar = document.getElementById('batch-action-bar');
+  const batchClose = document.getElementById('batch-close');
+
+  if (batchBtn && batchBar && batchClose) {
+    batchBtn.addEventListener('click', () => {
+      batchBar.classList.toggle('hidden');
+      batchBar.classList.toggle('flex');
+    });
+
+    batchClose.addEventListener('click', () => {
+      batchBar.classList.add('hidden');
+      batchBar.classList.remove('flex');
+    });
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_-4px_20px_rgba(20,43,74,0.05)]" data-active-classes="text-primary-container font-label-md font-bold"><div class="flex items-center justify-around h-20 px-space-sm max-w-lg mx-auto"><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-1 text-secondary transition-colors" data-path="beranda" href="#"><span class="material-symbols-outlined text-[24px]">grid_view</span><span class="font-label-sm text-label-sm">Beranda</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-1 text-secondary transition-colors" data-path="pilih-template" href="#"><span class="material-symbols-outlined text-[24px]">dashboard_customize</span><span class="font-label-sm text-label-sm">Template</span></a><a class="flex flex-col items-center justify-center relative -top-3 min-w-[60px] min-h-[56px] transition-transform active:translate-y-0.5" data-path="photobooth-kamera" href="#"><div class="w-14 h-14 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-[0_8px_16px_rgba(20,43,74,0.24)]"><span class="material-symbols-outlined text-[28px]">photo_camera</span></div><span class="font-label-sm text-label-sm text-primary-container mt-1 font-semibold">Capture</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-1 transition-colors text-primary-container font-label-md font-bold" data-path="galeri" href="#"><span class="material-symbols-outlined text-[24px]">photo_library</span><span class="font-label-sm text-label-sm">Galeri</span></a></div></nav></body></html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary": "#ffffff", "on-error": "#ffffff", "surface": "#f9f9ff", "inverse-on-surface": "#ebf1ff", "on-tertiary-fixed": "#1c192d", "on-secondary-fixed-variant": "#3a4858", "on-error-container": "#93000a", "on-surface": "#111c2c", "secondary-container": "#d5e4f8", "on-primary": "#ffffff", "secondary": "#516070", "surface-container-lowest": "#ffffff", "inverse-primary": "#b2c7ee", "tertiary-container": "#2b283d", "on-primary-fixed-variant": "#324768", "surface-dim": "#cfdaf1", "surface-container-high": "#dee9ff", "on-secondary-fixed": "#0e1d2b", "tertiary-fixed-dim": "#c9c3df", "surface-variant": "#d8e3fa", "on-tertiary-fixed-variant": "#48445b", "error": "#ba1a1a", "primary": "#001632", "tertiary": "#171328", "outline": "#74777e", "on-primary-fixed": "#021c3a", "on-surface-variant": "#44474e", "outline-variant": "#c4c6ce", "on-tertiary-container": "#948ea9", "error-container": "#ffdad6", "background": "#f9f9ff", "on-secondary-container": "#576676", "surface-container-low": "#f0f3ff", "surface-container-highest": "#d8e3fa", "inverse-surface": "#263142", "on-secondary": "#ffffff", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "primary-container": "#142b4a", "secondary-fixed": "#d5e4f8", "surface-tint": "#4a5f81", "primary-fixed-dim": "#b2c7ee", "on-background": "#111c2c", "secondary-fixed-dim": "#b9c8db", "primary-fixed": "#d5e3ff", "on-primary-container": "#7d93b7", "tertiary-fixed": "#e6dffb" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin": "3rem", "space-md": "1rem", "space-xl": "2.5rem", "space-lg": "1.5rem", "gutter-mobile": "1rem", "margin-mobile": "1.25rem", "gutter": "1.5rem", "space-xs": "0.25rem", "space-sm": "0.5rem" }, fontFamily: { "headline-sm": ["Manrope"], "display-lg": ["Manrope"], "body-lg": ["Inter"], "label-sm": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Manrope"], "label-md": ["Inter"], "body-sm": ["Inter"], "display-lg-mobile": ["Manrope"], "headline-md": ["Manrope"], "headline-lg-mobile": ["Manrope"], "label-lg": ["Inter"] }, fontSize: { "headline-sm": ["20px", { lineHeight: "28px", letterSpacing: "-0.005em", fontWeight: "600" }], "display-lg": ["56px", { lineHeight: "64px", letterSpacing: "-0.03em", fontWeight: "800" }], "body-lg": ["18px", { lineHeight: "28px", letterSpacing: "-0.005em", fontWeight: "400" }], "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "700" }], "body-md": ["15px", { lineHeight: "22px", letterSpacing: "0em", fontWeight: "400" }], "headline-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }], "body-sm": ["13px", { lineHeight: "18px", letterSpacing: "0em", fontWeight: "400" }], "display-lg-mobile": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "800" }], "headline-md": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-lg-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "700" }], "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;min-height:100%;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col antialiased min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(20,43,74,0.04)] pt-safe"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-xs"><button aria-label="Kembali" class="w-11 h-11 flex items-center justify-center text-primary-container active:scale-95 transition-transform" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><img alt="POSARA Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrD_795EGk3vXYXvCHbXBgWAdZDTcKpTZU0VwHzxffgrU4bAFpGBTo9SBKXsoG577YiF7bQefhl_WOmGjyuX6XZUgcdO-gf5GP-xn2Ts7VoVuF7zV-1vx54WgeOkv-v4hiz22K5KndcSotuUMwUYvEDdRTXU9kgDJQeISmR6MJE5PLJYE9HiaO-xyjunGhOMdmzzhIzHQMPM-U5w5DvpDaFZ3h9Kr6nd_EtvRIxEUkba"/><h1 class="font-headline-sm text-headline-sm text-primary-container truncate max-w-[150px]">Photobooth Kamera</h1></div><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_1px_4px_rgba(20,43,74,0.08)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX-O4LtlloGC1q3lrKWun2ebGcrLekPRW3C4SBqE-9JtrvbZTo7UZ-7gyQtIr58hEnhPrg_KckeCDAobb2fObB3ebGmoF9aninOE5603ZA-EM4S5hOQoSbdbwUP9p-Iuz6mCWH7Fbv4yl3ZbMj7eWWV47LP9_rjzGL9a1pdMme8GvWR5vY0Kdu7CrEkC9Z_rY1stgwPonmWe5WuMQYPg8kddY0IX8x4lU0Qm3Xb5M"/></div></div></header><main class="flex flex-col relative w-full pt-16 pb-safe bg-surface min-h-screen"><div class="flex flex-col w-full px-gutter-mobile pb-space-lg select-none">
+<!-- Top Live Status Bar -->
+<div class="flex items-center justify-between py-space-sm">
+<button aria-label="Keluar sesi" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary-container shadow-sm active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+<!-- Center Badge: Frame Progress -->
+<div class="flex items-center gap-space-xs bg-surface-container-high px-space-md py-1.5 rounded-full shadow-sm">
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+</div>
+<span class="font-label-md text-label-md text-primary-container ml-1">Frame 2 dari 4</span>
+</div>
+<!-- Quick Utilities: Switch Camera & Flash -->
+<div class="flex items-center gap-1">
+<button aria-label="Flash mode" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary-container active:scale-95 transition-transform" id="flashToggle" type="button">
+<span class="material-symbols-outlined text-[20px]">flash_on</span>
+</button>
+<button aria-label="Ganti Kamera" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary-container active:scale-95 transition-transform" id="camFlipToggle" type="button">
+<span class="material-symbols-outlined text-[20px]">flip_camera_android</span>
+</button>
+</div>
+</div>
+<!-- Live Viewfinder Section -->
+<div class="relative w-full aspect-[3/4] max-h-[512px] rounded-[24px] overflow-hidden bg-primary shadow-xl mt-space-xs">
+<!-- Camera Sensor / Subject Feed -->
+<img alt="Pratinjau Langsung Kamera" class="w-full h-full object-cover transition-transform duration-300" data-alt="Editorial candid medium close-up of a stylish young East Asian woman laughing naturally inside a photobooth, illuminated by soft front studio warm beauty lights, clean neutral studio backdrop with soft lavender and deep indigo shadows, aesthetic film grain, ultra sharp, high resolution." id="livePreviewImg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8jSp8fU_G3BcDFmzrOAdeUieyyHnk5iUpCLafijXhh_N8Jpxzf4xyyZixZ2H8VhjXNHZL_80LBWrne0OMlImERS937HuhoMXyimNPlJrk_ozWX9EpdvT9o2agHvVg1hFZ4TUZin8dLvHtX-P_Kni9boHH8juIBuf8Qm0dv3vAWKPGKZj4kiC2hW8X_484WcuBV2Eot89OP5ix2HDPUdZdu9joFQEh8lV01UHLpnY"/>
+<!-- Rule of Thirds Grid Guidelines -->
+<div class="absolute inset-0 pointer-events-none grid grid-cols-3 grid-rows-3 opacity-25">
+<div class="border-r border-b border-surface-container-lowest/40"></div>
+<div class="border-r border-b border-surface-container-lowest/40"></div>
+<div class="border-b border-surface-container-lowest/40"></div>
+<div class="border-r border-b border-surface-container-lowest/40"></div>
+<div class="border-r border-b border-surface-container-lowest/40"></div>
+<div class="border-b border-surface-container-lowest/40"></div>
+<div class="border-r border-surface-container-lowest/40"></div>
+<div class="border-r border-surface-container-lowest/40"></div>
+<div></div>
+</div>
+<!-- Top Overlay Elements Inside Viewfinder -->
+<div class="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
+<div class="flex items-center gap-1.5 bg-primary/75 backdrop-blur-md px-2.5 py-1 rounded-full shadow-md">
+<span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+<span class="font-label-sm text-label-sm text-on-primary tracking-wider uppercase">LIVE REC</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-md px-2.5 py-1 rounded-full shadow-md">
+<span class="material-symbols-outlined text-primary-container text-[14px]">auto_fix_high</span>
+<span class="font-label-sm text-label-sm text-primary-container" id="activeFilterBadge">Warm Film</span>
+</div>
+</div>
+<!-- Floating Live Strip Preview Stack (Right Hand Side) -->
+<div class="absolute right-3 top-16 z-20 flex flex-col gap-2 p-1.5 rounded-2xl bg-primary-container/85 backdrop-blur-md shadow-lg">
+<!-- Frame 1 (Captured) -->
+<div class="relative w-11 h-14 rounded-lg overflow-hidden shadow-sm bg-surface-container-highest">
+<img alt="Foto 1 Tersimpan" class="w-full h-full object-cover" data-alt="Miniature capture of a cheerful girl making peace signs, soft studio photobooth lighting, aesthetic warm tones, sharp focus, candid smile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCiw9XAqH2TEbLGc-MUuLI8ZYQUx4fGaos11TuuCs6pAi3xjZP2wQbcEbNxp43zwfaczpw8CjgNd4xZOv73lSwu5OACXEG_dGeH34lQj4qhcORLcA6GAvInx6_95zivNdPr3k79t620J5cY5RwuVKGS6nD0PtvReXPjajrjkF9Yt6CR-7dp9W89XDe1CVEeAnquKk3cujNAcNLoKM74KVjnP-phVf0W0_RzDvlPBI"/>
+<div class="absolute inset-0 bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-surface-container-lowest text-[16px] drop-shadow">check_circle</span>
+</div>
+</div>
+<!-- Frame 2 (Live Active) -->
+<div class="relative w-11 h-14 rounded-lg overflow-hidden bg-surface-container-highest p-[2px] bg-gradient-to-tr from-secondary-container to-surface-container-lowest">
+<div class="w-full h-full rounded-[6px] overflow-hidden bg-primary relative">
+<img alt="Foto 2 Sedang Berlangsung" class="w-full h-full object-cover opacity-80" data-alt="Subtle zoomed duplicate crop of live photobooth model smiling cheerfully under studio lights, warm palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1_-scF4E9UpbbB_Md2ugxnWB_G7HZGaoXKF8_nEe_POuz3_WBqH9uzUhqozvRRXKWw1pGulxSpPCX3EldgMzcyGhIwBb-UrFXIa3JsDKZ_quz105F0ATTP-RYc9FCM24BIFxVcRdqS_N5lP6xdKKqj_85B4bsuZaBM69w5ULexo934iPIVaZXY5E0yer6-RMtpMEWF7Ip_ilurTFR1dpkGJfapTBJ85jyFa-cKNQ"/>
+<div class="absolute inset-0 bg-primary-container/30 flex items-center justify-center">
+<span class="w-2 h-2 rounded-full bg-surface-container-lowest animate-ping"></span>
+</div>
+</div>
+</div>
+<!-- Frame 3 (Pending) -->
+<div class="w-11 h-14 rounded-lg bg-surface-container-lowest/15 flex flex-col items-center justify-center">
+<span class="font-label-sm text-label-sm text-surface-container-lowest/80">3</span>
+</div>
+<!-- Frame 4 (Pending) -->
+<div class="w-11 h-14 rounded-lg bg-surface-container-lowest/15 flex flex-col items-center justify-center">
+<span class="font-label-sm text-label-sm text-surface-container-lowest/80">4</span>
+</div>
+</div>
+<!-- Center Floating Countdown Indicator Overlay -->
+<div class="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none" id="countdownContainer">
+<div class="relative flex items-center justify-center">
+<!-- Outer Glowing Pulsing Ring -->
+<div class="w-28 h-28 rounded-full bg-surface-container-lowest/15 backdrop-blur-md flex items-center justify-center shadow-[0_0_40px_rgba(255,255,255,0.35)] animate-pulse">
+<div class="w-20 h-20 rounded-full bg-surface-container-lowest/25 flex items-center justify-center">
+<span class="font-display-lg-mobile text-display-lg-mobile text-surface-container-lowest font-extrabold tracking-normal drop-shadow-md" id="countdownDigit">
+              3
+            </span>
+</div>
+</div>
+</div>
+<!-- Pose Guide Bubble -->
+<div class="mt-4 px-4 py-1.5 rounded-full bg-primary/80 backdrop-blur-md shadow-md max-w-[85%] text-center">
+<p class="font-label-md text-label-md text-surface-container-lowest font-medium truncate">
+          Siap-siap berpose! Foto ke-2 akan diambil...
+        </p>
+</div>
+</div>
+<!-- Flash Screen White Flash Animation Div -->
+<div class="absolute inset-0 bg-surface-container-lowest opacity-0 pointer-events-none transition-opacity duration-150 z-30" id="flashFlashOverlay"></div>
+</div>
+<!-- Bottom Filter Selector Carousel -->
+<div class="w-full mt-space-md flex flex-col gap-space-xs">
+<div class="flex items-center justify-between px-1">
+<span class="font-label-md text-label-md text-secondary">PILIH FILTER ESTETIK</span>
+<span class="font-label-sm text-label-sm text-on-primary-fixed-variant bg-primary-fixed px-2 py-0.5 rounded-full">5 Efek</span>
+</div>
+<div class="flex items-center gap-space-sm overflow-x-auto py-1 no-scrollbar">
+<!-- Filter 1: Normal -->
+<button class="filter-btn flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface whitespace-nowrap active:scale-95 transition-all shadow-sm" onclick="selectFilter('Original', this)" type="button">
+<span class="material-symbols-outlined text-[16px]">palette</span>
+<span class="font-label-md text-label-md">Normal</span>
+</button>
+<!-- Filter 2: Warm Film (Active) -->
+<button class="filter-btn flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-primary-container text-on-primary whitespace-nowrap active:scale-95 transition-all shadow-md" onclick="selectFilter('Warm Film', this)" type="button">
+<span class="material-symbols-outlined text-[16px]">wb_sunny</span>
+<span class="font-label-md text-label-md font-bold">Warm</span>
+</button>
+<!-- Filter 3: B&W -->
+<button class="filter-btn flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface whitespace-nowrap active:scale-95 transition-all shadow-sm" onclick="selectFilter('Monochrome', this)" type="button">
+<span class="material-symbols-outlined text-[16px]">filter_b_and_w</span>
+<span class="font-label-md text-label-md">B&amp;W</span>
+</button>
+<!-- Filter 4: Rosé -->
+<button class="filter-btn flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface whitespace-nowrap active:scale-95 transition-all shadow-sm" onclick="selectFilter('Rosé Soft', this)" type="button">
+<span class="material-symbols-outlined text-[16px]">flare</span>
+<span class="font-label-md text-label-md">Rosé</span>
+</button>
+<!-- Filter 5: Vintage -->
+<button class="filter-btn flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface whitespace-nowrap active:scale-95 transition-all shadow-sm" onclick="selectFilter('Vintage 90s', this)" type="button">
+<span class="material-symbols-outlined text-[16px]">photo_camera_back</span>
+<span class="font-label-md text-label-md">Vintage</span>
+</button>
+</div>
+</div>
+<!-- Main Shutter Bar Controls Area -->
+<div class="mt-space-md w-full bg-surface-container-lowest rounded-3xl p-space-md shadow-md flex flex-col items-center gap-space-sm">
+<div class="w-full flex items-center justify-around">
+<!-- Left: Timer Toggle -->
+<button class="flex flex-col items-center gap-1 text-primary-container active:scale-90 transition-transform" id="timerBtn" type="button">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[22px]">timer</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary" id="timerLabel">3 Detik</span>
+</button>
+<!-- Center: Big Physical-Style Camera Shutter Button -->
+<button aria-label="Ambil Foto Sekarang" class="relative w-20 h-20 rounded-full bg-primary-container flex items-center justify-center p-1.5 shadow-xl active:scale-90 transition-all cursor-pointer group" id="shutterBtn" type="button">
+<!-- Outer tactile ring accent -->
+<div class="w-full h-full rounded-full bg-secondary-container flex items-center justify-center shadow-inner group-active:bg-surface-container-high transition-colors">
+<!-- Inner Core Shutter Surface -->
+<div class="w-14 h-14 rounded-full bg-surface-container-lowest flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-primary-container text-[26px] transition-transform group-hover:scale-110">camera</span>
+</div>
+</div>
+</button>
+<!-- Right: Retake / Ulangi Foto Terakhir -->
+<button class="flex flex-col items-center gap-1 text-primary-container active:scale-90 transition-transform" id="retakeBtn" type="button">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[22px]">replay</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Ulangi</span>
+</button>
+</div>
+<!-- Instruction Subtext -->
+<div class="flex items-center gap-1.5 pt-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">auto_mode</span>
+<span class="font-body-sm text-body-sm text-center">Auto-countdown 3 detik per frame foto</span>
+</div>
+</div>
+</div>
+<script>
+  let currentCountdown = 3;
+  let timerInterval = null;
+  let timerMode = 3;
+
+  const digitEl = document.getElementById('countdownDigit');
+  const flashOverlay = document.getElementById('flashFlashOverlay');
+  const shutterBtn = document.getElementById('shutterBtn');
+  const timerBtn = document.getElementById('timerBtn');
+  const timerLabel = document.getElementById('timerLabel');
+  const activeFilterBadge = document.getElementById('activeFilterBadge');
+  const camFlipToggle = document.getElementById('camFlipToggle');
+  const flashToggle = document.getElementById('flashToggle');
+  const previewImg = document.getElementById('livePreviewImg');
+
+  function triggerShutterFlash() {
+    if (!flashOverlay) return;
+    flashOverlay.classList.remove('opacity-0');
+    flashOverlay.classList.add('opacity-90');
+    setTimeout(() => {
+      flashOverlay.classList.remove('opacity-90');
+      flashOverlay.classList.add('opacity-0');
+    }, 180);
+  }
+
+  function startCountdown() {
+    clearInterval(timerInterval);
+    currentCountdown = timerMode;
+    if (digitEl) digitEl.textContent = currentCountdown;
+
+    timerInterval = setInterval(() => {
+      currentCountdown -= 1;
+      if (currentCountdown > 0) {
+        if (digitEl) digitEl.textContent = currentCountdown;
+      } else {
+        clearInterval(timerInterval);
+        if (digitEl) digitEl.textContent = '📸';
+        triggerShutterFlash();
+        setTimeout(() => {
+          startCountdown();
+        }, 1200);
+      }
+    }, 1000);
+  }
+
+  if (shutterBtn) {
+    shutterBtn.addEventListener('click', () => {
+      triggerShutterFlash();
+      startCountdown();
+    });
+  }
+
+  if (timerBtn) {
+    timerBtn.addEventListener('click', () => {
+      timerMode = timerMode === 3 ? 5 : 3;
+      timerLabel.textContent = timerMode + ' Detik';
+      startCountdown();
+    });
+  }
+
+  if (camFlipToggle) {
+    camFlipToggle.addEventListener('click', () => {
+      if (previewImg) {
+        previewImg.classList.toggle('scale-x-[-1]');
+      }
+    });
+  }
+
+  let flashActive = true;
+  if (flashToggle) {
+    flashToggle.addEventListener('click', () => {
+      flashActive = !flashActive;
+      const icon = flashToggle.querySelector('span');
+      if (icon) {
+        icon.textContent = flashActive ? 'flash_on' : 'flash_off';
+      }
+    });
+  }
+
+  function selectFilter(filterName, btnElement) {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.className = 'filter-btn flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface whitespace-nowrap active:scale-95 transition-all shadow-sm';
+      const textSpan = btn.querySelector('span:nth-child(2)');
+      if (textSpan) textSpan.classList.remove('font-bold');
+    });
+
+    btnElement.className = 'filter-btn flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-primary-container text-on-primary whitespace-nowrap active:scale-95 transition-all shadow-md';
+    const activeText = btnElement.querySelector('span:nth-child(2)');
+    if (activeText) activeText.classList.add('font-bold');
+
+    if (activeFilterBadge) {
+      activeFilterBadge.textContent = filterName;
+    }
+  }
+
+  startCountdown();
+</script></main></body></html>

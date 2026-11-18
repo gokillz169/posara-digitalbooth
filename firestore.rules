@@ -1,0 +1,486 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Pillar 1 / Global Safety Net: Deny all access by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Reusable Hardened Primitives
+    function isValidId(id) {
+      return id is string
+        && id.size() >= 1
+        && id.size() <= 128
+        && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedUser() {
+      return isSignedIn()
+        && request.auth.token.email_verified == true
+        && request.auth.token.email is string;
+    }
+
+    function isOwnerEmail() {
+      return isVerifiedUser()
+        && request.auth.token.email.lower() == 'mutawakkils16@gmail.com';
+    }
+
+    function isComplimentaryStudioUser() {
+      return isVerifiedUser()
+        && request.auth.token.email.lower() in [
+          'mutawakkils16@gmail.com',
+          'fitriyaninovitasari8@gmail.com'
+        ];
+    }
+
+    function isAdmin() {
+      return isOwnerEmail()
+        || (isVerifiedUser()
+          && exists(/databases/$(database)/documents/admins/$(request.auth.uid)));
+    }
+
+    function isValidQrisString(val) {
+      return val is string
+        && (
+          val.size() == 0
+          || (val.size() >= 24 && val.size() <= 512 && val.matches('^000201.*'))
+        );
+    }
+
+    function isValidAdminUser(data) {
+      return data.keys().hasAll(['uid', 'email', 'displayName', 'role', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['uid', 'email', 'displayName', 'role', 'createdAt', 'updatedAt'])
+        && isValidId(data.uid)
+        && data.uid == request.auth.uid
+        && data.email is string
+        && data.email.size() >= 3
+        && data.email.size() <= 160
+        && data.email == request.auth.token.email
+        && data.displayName is string
+        && data.displayName.size() >= 1
+        && data.displayName.size() <= 100
+        && data.role is string
+        && data.role in ['owner', 'admin']
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidBoothSettings(data) {
+      return data.keys().hasAll([
+          'ownerUid',
+          'ownerEmail',
+          'autoResetEnabled',
+          'customWatermarkEnabled',
+          'watermarkText',
+          'kioskPin',
+          'createdAt',
+          'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'ownerUid',
+          'ownerEmail',
+          'autoResetEnabled',
+          'customWatermarkEnabled',
+          'watermarkText',
+          'kioskPin',
+          'qrisMerchantString',
+          'createdAt',
+          'updatedAt'
+        ])
+        && isValidId(data.ownerUid)
+        && data.ownerUid == request.auth.uid
+        && data.ownerEmail is string
+        && data.ownerEmail.size() >= 3
+        && data.ownerEmail.size() <= 160
+        && data.ownerEmail == request.auth.token.email
+        && data.autoResetEnabled is bool
+        && data.customWatermarkEnabled is bool
+        && data.watermarkText is string
+        && data.watermarkText.size() <= 80
+        && data.kioskPin is string
+        && data.kioskPin.size() >= 4
+        && data.kioskPin.size() <= 6
+        && data.kioskPin.matches('^[0-9]{4,6}$')
+        && (!('qrisMerchantString' in data) || isValidQrisString(data.qrisMerchantString))
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidPublicBoothConfig(data) {
+      return data.keys().hasAll([
+          'autoResetEnabled',
+          'customWatermarkEnabled',
+          'watermarkText',
+          'qrisMerchantString',
+          'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'autoResetEnabled',
+          'customWatermarkEnabled',
+          'watermarkText',
+          'qrisMerchantString',
+          'updatedAt'
+        ])
+        && data.autoResetEnabled is bool
+        && data.customWatermarkEnabled is bool
+        && data.watermarkText is string
+        && data.watermarkText.size() <= 80
+        && isValidQrisString(data.qrisMerchantString)
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidUserPlan(data) {
+      return data.keys().hasAll([
+          'uid',
+          'email',
+          'plan',
+          'creditsTotal',
+          'creditsRemaining',
+          'cycleKey',
+          'createdAt',
+          'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'uid',
+          'email',
+          'plan',
+          'creditsTotal',
+          'creditsRemaining',
+          'cycleKey',
+          'createdAt',
+          'updatedAt'
+        ])
+        && isValidId(data.uid)
+        && data.email is string
+        && data.email.size() >= 3
+        && data.email.size() <= 160
+        && data.plan is string
+        && data.plan in ['free', 'weekend', 'creator', 'studio']
+        && data.creditsTotal is int
+        && data.creditsTotal >= 20
+        && data.creditsTotal <= 999999
+        && data.creditsRemaining is int
+        && data.creditsRemaining >= 0
+        && data.creditsRemaining <= data.creditsTotal
+        && data.cycleKey is string
+        && data.cycleKey.size() == 7
+        && data.cycleKey.matches('^[0-9]{4}-[0-9]{2}$')
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidPlanOrderPrice(plan, cycle, amount) {
+      return (plan == 'weekend' && cycle == 'once' && amount == 5000)
+        || (plan == 'creator' && cycle == 'monthly' && amount == 10000)
+        || (plan == 'creator' && cycle == 'yearly' && amount == 96000)
+        || (plan == 'studio' && cycle == 'monthly' && amount == 15000)
+        || (plan == 'studio' && cycle == 'yearly' && amount == 144000);
+    }
+
+    function isValidUpgradeRequest(data) {
+      return data.keys().hasAll([
+          'requestId',
+          'uid',
+          'email',
+          'displayName',
+          'requestedPlan',
+          'billingCycle',
+          'amountIdr',
+          'referenceCode',
+          'paymentNote',
+          'status',
+          'reviewedByEmail',
+          'createdAt',
+          'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'requestId',
+          'uid',
+          'email',
+          'displayName',
+          'requestedPlan',
+          'billingCycle',
+          'amountIdr',
+          'referenceCode',
+          'invoiceNumber',
+          'paymentNote',
+          'status',
+          'reviewedByEmail',
+          'createdAt',
+          'updatedAt'
+        ])
+        && isValidId(data.requestId)
+        && isValidId(data.uid)
+        && data.email is string
+        && data.email.size() >= 3
+        && data.email.size() <= 160
+        && data.displayName is string
+        && data.displayName.size() >= 1
+        && data.displayName.size() <= 100
+        && data.requestedPlan is string
+        && data.requestedPlan in ['weekend', 'creator', 'studio']
+        && data.billingCycle is string
+        && data.billingCycle in ['once', 'monthly', 'yearly']
+        && data.amountIdr is int
+        && isValidPlanOrderPrice(data.requestedPlan, data.billingCycle, data.amountIdr)
+        && data.referenceCode is string
+        && data.referenceCode.size() >= 4
+        && data.referenceCode.size() <= 32
+        && data.referenceCode.matches('^[A-Z0-9\\-]+$')
+        && (!('invoiceNumber' in data) || (
+          data.invoiceNumber is string
+          && data.invoiceNumber.size() >= 6
+          && data.invoiceNumber.size() <= 32
+          && data.invoiceNumber.matches('^[A-Z0-9\\-]+$')
+        ))
+        && data.paymentNote is string
+        && data.paymentNote.size() <= 160
+        && data.status is string
+        && data.status in ['pending', 'approved', 'rejected']
+        && data.reviewedByEmail is string
+        && data.reviewedByEmail.size() <= 160
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidCheckoutThrottle(data) {
+      return data.keys().hasAll(['uid', 'latestRequestId', 'updatedAt'])
+        && data.keys().hasOnly(['uid', 'latestRequestId', 'updatedAt'])
+        && isValidId(data.uid)
+        && data.uid == request.auth.uid
+        && isValidId(data.latestRequestId)
+        && data.updatedAt is timestamp;
+    }
+
+    // Admin Registry: strictly isolated to the verified owner/admin
+    match /admins/{adminId} {
+      allow get: if isValidId(adminId)
+        && isAdmin()
+        && (request.auth.uid == adminId || isOwnerEmail());
+
+      allow list: if isVerifiedUser()
+        && resource.data.uid == request.auth.uid
+        && resource.data.email == 'mutawakkils16@gmail.com';
+
+      allow create: if isValidId(adminId)
+        && isOwnerEmail()
+        && adminId == request.auth.uid
+        && isValidAdminUser(incoming())
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+
+      allow update: if isValidId(adminId)
+        && isOwnerEmail()
+        && adminId == request.auth.uid
+        && isValidAdminUser(incoming())
+        && incoming().uid == existing().uid
+        && incoming().email == existing().email
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'role', 'updatedAt']);
+
+      allow delete: if false;
+    }
+
+    // Private Booth Settings: strictly controlled by verified POSARA owner/admin (contains PIN & owner email)
+    match /booth_settings/{settingId} {
+      allow get: if isValidId(settingId) && isAdmin();
+
+      allow list: if isVerifiedUser()
+        && resource.data.ownerUid == request.auth.uid
+        && resource.data.ownerEmail == 'mutawakkils16@gmail.com';
+
+      allow create: if isValidId(settingId)
+        && isAdmin()
+        && isValidBoothSettings(incoming())
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+
+      allow update: if isValidId(settingId)
+        && isAdmin()
+        && isValidBoothSettings(incoming())
+        && incoming().ownerUid == existing().ownerUid
+        && incoming().ownerEmail == existing().ownerEmail
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly([
+          'autoResetEnabled',
+          'customWatermarkEnabled',
+          'watermarkText',
+          'kioskPin',
+          'qrisMerchantString',
+          'updatedAt'
+        ]);
+
+      allow delete: if false;
+    }
+
+    // Public Booth Config: zero-PII kiosk display/QRIS configuration readable by visitor sessions
+    match /public_booth_config/{configId} {
+      allow get: if isValidId(configId) && configId == 'main';
+
+      allow list: if false;
+
+      allow create, update: if isValidId(configId)
+        && configId == 'main'
+        && isAdmin()
+        && isValidPublicBoothConfig(incoming())
+        && incoming().updatedAt == request.time;
+
+      allow delete: if false;
+    }
+
+    // User Subscription Plans & Quotas: prevents self-upgrade privilege escalation & cycle rollback
+    match /user_plans/{userId} {
+      allow get: if isValidId(userId)
+        && (isAdmin() || (isVerifiedUser() && request.auth.uid == userId));
+
+      allow list: if isVerifiedUser()
+        && (resource.data.uid == request.auth.uid || isOwnerEmail());
+
+      allow create: if isValidId(userId)
+        && isVerifiedUser()
+        && isValidUserPlan(incoming())
+        && incoming().uid == userId
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time
+        && (
+          isAdmin()
+          || (
+            request.auth.uid == userId
+            && incoming().email == request.auth.token.email
+            && isComplimentaryStudioUser()
+            && incoming().plan == 'studio'
+            && incoming().creditsTotal == 999999
+            && incoming().creditsRemaining == 999999
+          )
+          || (
+            request.auth.uid == userId
+            && incoming().email == request.auth.token.email
+            && !isComplimentaryStudioUser()
+            && incoming().plan == 'free'
+            && incoming().creditsTotal == 20
+            && incoming().creditsRemaining == 20
+          )
+        );
+
+      allow update: if isValidId(userId)
+        && isVerifiedUser()
+        && isValidUserPlan(incoming())
+        && incoming().uid == existing().uid
+        && incoming().email == existing().email
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          isAdmin()
+          || (
+            request.auth.uid == userId
+            && isComplimentaryStudioUser()
+            && incoming().plan == 'studio'
+            && incoming().creditsTotal == 999999
+            && incoming().creditsRemaining == 999999
+            && incoming().diff(existing()).affectedKeys().hasOnly([
+              'plan',
+              'creditsTotal',
+              'creditsRemaining',
+              'cycleKey',
+              'updatedAt'
+            ])
+          )
+          || (
+            request.auth.uid == userId
+            && incoming().plan == existing().plan
+            && incoming().creditsTotal == existing().creditsTotal
+            && incoming().diff(existing()).affectedKeys().hasOnly(['creditsRemaining', 'cycleKey', 'updatedAt'])
+            && (
+              (incoming().cycleKey == existing().cycleKey && incoming().creditsRemaining <= existing().creditsRemaining)
+              || (existing().plan == 'free' && incoming().cycleKey > existing().cycleKey && incoming().creditsRemaining == 20)
+            )
+          )
+        );
+
+      allow delete: if false;
+    }
+
+    // Customer Subscription Upgrade Requests: customers submit pending requests; only verified Owner approves/rejects
+    match /upgrade_requests/{requestId} {
+      allow get: if isValidId(requestId)
+        && (isAdmin() || (isVerifiedUser() && existing().uid == request.auth.uid));
+
+      allow list: if isOwnerEmail()
+        || (isVerifiedUser() && resource.data.uid == request.auth.uid);
+
+      allow create: if isValidId(requestId)
+        && isVerifiedUser()
+        && isValidUpgradeRequest(incoming())
+        && incoming().requestId == requestId
+        && incoming().uid == request.auth.uid
+        && incoming().email == request.auth.token.email
+        && 'invoiceNumber' in incoming()
+        && incoming().paymentNote.size() >= 4
+        && incoming().status == 'pending'
+        && incoming().reviewedByEmail == ''
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time
+        && getAfter(/databases/$(database)/documents/checkout_throttles/$(request.auth.uid)).data.latestRequestId == requestId;
+
+      allow update: if isValidId(requestId)
+        && isAdmin()
+        && isValidUpgradeRequest(incoming())
+        && incoming().requestId == existing().requestId
+        && incoming().uid == existing().uid
+        && incoming().email == existing().email
+        && incoming().requestedPlan == existing().requestedPlan
+        && incoming().billingCycle == existing().billingCycle
+        && incoming().amountIdr == existing().amountIdr
+        && incoming().referenceCode == existing().referenceCode
+        && (!('invoiceNumber' in existing()) || incoming().invoiceNumber == existing().invoiceNumber)
+        && incoming().paymentNote == existing().paymentNote
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && existing().status == 'pending'
+        && incoming().status in ['approved', 'rejected']
+        && incoming().reviewedByEmail == request.auth.token.email
+        && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'reviewedByEmail', 'updatedAt']);
+
+      allow delete: if false;
+    }
+
+    // Per-user server-enforced 60-second anti-spam checkout throttle to prevent Firestore write-flood billing spikes
+    match /checkout_throttles/{userId} {
+      allow get: if isValidId(userId)
+        && isVerifiedUser()
+        && (request.auth.uid == userId || isAdmin());
+
+      allow list: if false;
+
+      allow create: if isValidId(userId)
+        && isVerifiedUser()
+        && request.auth.uid == userId
+        && isValidCheckoutThrottle(incoming())
+        && incoming().updatedAt == request.time;
+
+      allow update: if isValidId(userId)
+        && isVerifiedUser()
+        && request.auth.uid == userId
+        && isValidCheckoutThrottle(incoming())
+        && incoming().uid == existing().uid
+        && incoming().updatedAt == request.time
+        && request.time >= existing().updatedAt + duration.value(60, 's');
+
+      allow delete: if false;
+    }
+  }
+}

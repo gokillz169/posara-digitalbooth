@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary": "#ffffff", "on-error": "#ffffff", "surface": "#f9f9ff", "inverse-on-surface": "#ebf1ff", "on-tertiary-fixed": "#1c192d", "on-secondary-fixed-variant": "#3a4858", "on-error-container": "#93000a", "on-surface": "#111c2c", "secondary-container": "#d5e4f8", "on-primary": "#ffffff", "secondary": "#516070", "surface-container-lowest": "#ffffff", "inverse-primary": "#b2c7ee", "tertiary-container": "#2b283d", "on-primary-fixed-variant": "#324768", "surface-dim": "#cfdaf1", "surface-container-high": "#dee9ff", "on-secondary-fixed": "#0e1d2b", "tertiary-fixed-dim": "#c9c3df", "surface-variant": "#d8e3fa", "on-tertiary-fixed-variant": "#48445b", "error": "#ba1a1a", "primary": "#001632", "tertiary": "#171328", "outline": "#74777e", "on-primary-fixed": "#021c3a", "on-surface-variant": "#44474e", "outline-variant": "#c4c6ce", "on-tertiary-container": "#948ea9", "error-container": "#ffdad6", "background": "#f9f9ff", "on-secondary-container": "#576676", "surface-container-low": "#f0f3ff", "surface-container-highest": "#d8e3fa", "inverse-surface": "#263142", "on-secondary": "#ffffff", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "primary-container": "#142b4a", "secondary-fixed": "#d5e4f8", "surface-tint": "#4a5f81", "primary-fixed-dim": "#b2c7ee", "on-background": "#111c2c", "secondary-fixed-dim": "#b9c8db", "primary-fixed": "#d5e3ff", "on-primary-container": "#7d93b7", "tertiary-fixed": "#e6dffb" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin": "3rem", "space-md": "1rem", "space-xl": "2.5rem", "space-lg": "1.5rem", "gutter-mobile": "1rem", "margin-mobile": "1.25rem", "gutter": "1.5rem", "space-xs": "0.25rem", "space-sm": "0.5rem" }, fontFamily: { "headline-sm": ["Manrope"], "display-lg": ["Manrope"], "body-lg": ["Inter"], "label-sm": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Manrope"], "label-md": ["Inter"], "body-sm": ["Inter"], "display-lg-mobile": ["Manrope"], "headline-md": ["Manrope"], "headline-lg-mobile": ["Manrope"], "label-lg": ["Inter"] }, fontSize: { "headline-sm": ["20px", { lineHeight: "28px", letterSpacing: "-0.005em", fontWeight: "600" }], "display-lg": ["56px", { lineHeight: "64px", letterSpacing: "-0.03em", fontWeight: "800" }], "body-lg": ["18px", { lineHeight: "28px", letterSpacing: "-0.005em", fontWeight: "400" }], "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "700" }], "body-md": ["15px", { lineHeight: "22px", letterSpacing: "0em", fontWeight: "400" }], "headline-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }], "body-sm": ["13px", { lineHeight: "18px", letterSpacing: "0em", fontWeight: "400" }], "display-lg-mobile": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "800" }], "headline-md": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-lg-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "700" }], "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;min-height:100%;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col antialiased min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(20,43,74,0.04)] pt-safe"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-xs"><button aria-label="Kembali" class="w-11 h-11 flex items-center justify-center text-primary-container active:scale-95 transition-transform" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><img alt="POSARA Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrD_795EGk3vXYXvCHbXBgWAdZDTcKpTZU0VwHzxffgrU4bAFpGBTo9SBKXsoG577YiF7bQefhl_WOmGjyuX6XZUgcdO-gf5GP-xn2Ts7VoVuF7zV-1vx54WgeOkv-v4hiz22K5KndcSotuUMwUYvEDdRTXU9kgDJQeISmR6MJE5PLJYE9HiaO-xyjunGhOMdmzzhIzHQMPM-U5w5DvpDaFZ3h9Kr6nd_EtvRIxEUkba"/><h1 class="font-headline-sm text-headline-sm text-primary-container truncate max-w-[150px]">Hasil &amp; Unduh</h1></div><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_1px_4px_rgba(20,43,74,0.08)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX-O4LtlloGC1q3lrKWun2ebGcrLekPRW3C4SBqE-9JtrvbZTo7UZ-7gyQtIr58hEnhPrg_KckeCDAobb2fObB3ebGmoF9aninOE5603ZA-EM4S5hOQoSbdbwUP9p-Iuz6mCWH7Fbv4yl3ZbMj7eWWV47LP9_rjzGL9a1pdMme8GvWR5vY0Kdu7CrEkC9Z_rY1stgwPonmWe5WuMQYPg8kddY0IX8x4lU0Qm3Xb5M"/></div></div></header><main class="flex flex-col relative w-full pt-16 pb-safe bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="px-margin-mobile pt-space-md pb-space-xl flex flex-col gap-space-lg max-w-lg mx-auto w-full">
+<!-- Modal Intro Banner -->
+<div class="flex flex-col gap-space-xs text-center items-center">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-fixed text-label-sm font-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+        Koneksi Instan P2P
+      </span>
+<h2 class="font-headline-md text-headline-md text-primary-container tracking-tight">
+        Bagikan ke HP Teman
+      </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">
+        Arahkan kamera ponsel ke QR code di bawah untuk langsung menyimpan strip foto kualitas studio tanpa aplikasi.
+      </p>
+</div>
+<!-- Main Card: QR Code & Sharing Link -->
+<div class="relative bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col items-center">
+<!-- Session Countdown Badge -->
+<div class="w-full flex items-center justify-between pb-space-sm">
+<div class="inline-flex items-center gap-1.5 text-label-md font-label-md text-primary-container">
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span>Sesi Privat Aktif</span>
+</div>
+<div class="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-secondary-fixed-variant text-label-sm font-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+<span id="countdown-timer">09:48</span>
+</div>
+</div>
+<!-- QR Code Canvas with Camera Brand Watermark -->
+<div class="relative p-space-md bg-surface-container-lowest rounded-lg shadow-sm flex items-center justify-center my-space-xs group">
+<!-- SVG Generated Modern High-Density QR Pattern -->
+<svg class="w-56 h-56 text-primary-container" fill="none" viewbox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+<!-- Outer Positioning Markers -->
+<rect fill="currentColor" height="44" rx="8" width="44" x="10" y="10"></rect>
+<rect fill="#ffffff" height="32" rx="4" width="32" x="16" y="16"></rect>
+<rect fill="currentColor" height="20" rx="3" width="20" x="22" y="22"></rect>
+<rect fill="currentColor" height="44" rx="8" width="44" x="126" y="10"></rect>
+<rect fill="#ffffff" height="32" rx="4" width="32" x="132" y="16"></rect>
+<rect fill="currentColor" height="20" rx="3" width="20" x="138" y="22"></rect>
+<rect fill="currentColor" height="44" rx="8" width="44" x="10" y="126"></rect>
+<rect fill="#ffffff" height="32" rx="4" width="32" x="16" y="132"></rect>
+<rect fill="currentColor" height="20" rx="3" width="20" x="22" y="138"></rect>
+<!-- Stylized Data Dot Matrix -->
+<rect fill="currentColor" height="6" rx="2" width="6" x="62" y="12"></rect>
+<rect fill="currentColor" height="6" rx="2" width="10" x="74" y="12"></rect>
+<rect fill="currentColor" height="6" rx="2" width="6" x="92" y="12"></rect>
+<rect fill="currentColor" height="6" rx="2" width="12" x="106" y="12"></rect>
+<rect fill="currentColor" height="6" rx="2" width="8" x="62" y="24"></rect>
+<rect fill="currentColor" height="6" rx="2" width="6" x="78" y="24"></rect>
+<rect fill="currentColor" height="6" rx="2" width="14" x="92" y="24"></rect>
+<rect fill="currentColor" height="6" rx="2" width="6" x="114" y="24"></rect>
+<rect fill="currentColor" height="6" rx="2" width="18" x="62" y="36"></rect>
+<rect fill="currentColor" height="6" rx="2" width="6" x="88" y="36"></rect>
+<rect fill="currentColor" height="6" rx="2" width="18" x="102" y="36"></rect>
+<rect fill="currentColor" height="12" rx="2" width="6" x="12" y="62"></rect>
+<rect fill="currentColor" height="6" rx="2" width="14" x="24" y="62"></rect>
+<rect fill="currentColor" height="6" rx="2" width="10" x="46" y="62"></rect>
+<rect fill="currentColor" height="6" rx="2" width="6" x="64" y="62"></rect>
+<rect fill="currentColor" height="6" rx="2" width="12" x="110" y="62"></rect>
+<rect fill="currentColor" height="6" rx="2" width="8" x="130" y="62"></rect>
+<rect fill="currentColor" height="6" rx="2" width="22" x="146" y="62"></rect>
+<rect fill="currentColor" height="6" rx="2" width="18" x="12" y="80"></rect>
+<rect fill="currentColor" height="6" rx="2" width="6" x="38" y="80"></rect>
+<rect fill="currentColor" height="6" rx="2" width="8" x="52" y="80"></rect>
+<rect fill="currentColor" height="6" rx="2" width="16" x="120" y="80"></rect>
+<rect fill="currentColor" height="12" rx="2" width="6" x="144" y="80"></rect>
+<rect fill="currentColor" height="6" rx="2" width="10" x="158" y="80"></rect>
+<rect fill="currentColor" height="6" rx="2" width="8" x="12" y="94"></rect>
+<rect fill="currentColor" height="6" rx="2" width="12" x="28" y="94"></rect>
+<rect fill="currentColor" height="6" rx="2" width="12" x="48" y="94"></rect>
+<rect fill="currentColor" height="6" rx="2" width="6" x="120" y="94"></rect>
+<rect fill="currentColor" height="6" rx="2" width="8" x="134" y="94"></rect>
+<rect fill="currentColor" height="6" rx="2" width="18" x="150" y="94"></rect>
+<rect fill="currentColor" height="6" rx="2" width="14" x="12" y="108"></rect>
+<rect fill="currentColor" height="12" rx="2" width="6" x="34" y="108"></rect>
+<rect fill="currentColor" height="6" rx="2" width="12" x="48" y="108"></rect>
+<rect fill="currentColor" height="6" rx="2" width="18" x="128" y="108"></rect>
+<rect fill="currentColor" height="6" rx="2" width="14" x="154" y="108"></rect>
+<rect fill="currentColor" height="6" rx="2" width="14" x="62" y="126"></rect>
+<rect fill="currentColor" height="6" rx="2" width="8" x="84" y="126"></rect>
+<rect fill="currentColor" height="6" rx="2" width="6" x="100" y="126"></rect>
+<rect fill="currentColor" height="6" rx="2" width="16" x="114" y="126"></rect>
+<rect fill="currentColor" height="6" rx="2" width="10" x="138" y="126"></rect>
+<rect fill="currentColor" height="6" rx="2" width="12" x="156" y="126"></rect>
+<rect fill="currentColor" height="6" rx="2" width="8" x="62" y="140"></rect>
+<rect fill="currentColor" height="6" rx="2" width="16" x="78" y="140"></rect>
+<rect fill="currentColor" height="6" rx="2" width="10" x="102" y="140"></rect>
+<rect fill="currentColor" height="6" rx="2" width="8" x="120" y="140"></rect>
+<rect fill="currentColor" height="6" rx="2" width="16" x="136" y="140"></rect>
+<rect fill="currentColor" height="6" rx="2" width="8" x="160" y="140"></rect>
+<rect fill="currentColor" height="6" rx="2" width="18" x="62" y="154"></rect>
+<rect fill="currentColor" height="6" rx="2" width="6" x="88" y="154"></rect>
+<rect fill="currentColor" height="6" rx="2" width="14" x="102" y="154"></rect>
+<rect fill="currentColor" height="6" rx="2" width="18" x="124" y="154"></rect>
+<rect fill="currentColor" height="6" rx="2" width="18" x="150" y="154"></rect>
+<rect fill="currentColor" height="6" rx="2" width="6" x="62" y="164"></rect>
+<rect fill="currentColor" height="6" rx="2" width="14" x="76" y="164"></rect>
+<rect fill="currentColor" height="6" rx="2" width="6" x="98" y="164"></rect>
+<rect fill="currentColor" height="6" rx="2" width="12" x="112" y="164"></rect>
+<rect fill="currentColor" height="6" rx="2" width="8" x="132" y="164"></rect>
+<rect fill="currentColor" height="6" rx="2" width="20" x="148" y="164"></rect>
+</svg>
+<!-- Brand Center Badge -->
+<div class="absolute inset-0 m-auto w-12 h-12 rounded-full bg-surface-container-lowest shadow-md flex items-center justify-center p-1">
+<div class="w-full h-full rounded-full bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">photo_camera</span>
+</div>
+</div>
+</div>
+<!-- Quick Copy Link Bar -->
+<div class="w-full mt-space-sm pt-space-sm flex items-center justify-between gap-space-xs bg-surface-container-low rounded-lg p-2">
+<div class="flex items-center gap-2 pl-2 overflow-hidden">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant flex-shrink-0">link</span>
+<span class="font-body-sm text-body-sm text-primary-container font-medium truncate select-all">posara.app/s/ps-8842x</span>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-lowest text-primary-container font-label-md text-label-md shadow-sm active:scale-95 transition-all flex items-center gap-1 flex-shrink-0" id="copy-btn">
+<span class="material-symbols-outlined text-[16px]" id="copy-icon">content_copy</span>
+<span id="copy-text">Salin</span>
+</button>
+</div>
+</div>
+<!-- Live Photo Strip Snapshot & Metadata -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center gap-space-md">
+<!-- 4-Frame Miniature Photo Strip Preview -->
+<div class="w-16 flex-shrink-0 bg-primary-container p-1 rounded shadow-md flex flex-col gap-1 items-center">
+<div class="w-full h-11 bg-surface-container rounded-sm overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Close up laughing shot of two Asian best friends in modern photo booth with subtle film grain and cool pastel blue tint, high sharpness" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPXgcJ52G-I2axKnofnLxUnxsvTp8Bgqp-Mv5fKCwuVSoJ94dcxt15iidGO3fLUSJ5aOm9TPn6LdaXSfUwh18NhFAeJiyLucDh8b4yZKp5QIyr1Xii5mvMOe_3j1Idn9eQDvdNfA7d2lcLWrfoxwMmGq_KLRCiIPqRB4v74eo6-xEKI518lc0sZii8CwjV5o9Dl0LaNM6wnDJkhADDFi5BLN4ywYtIvQMLLVPNWYg"/>
+</div>
+<div class="w-full h-11 bg-surface-container rounded-sm overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Playful eye contact pose wearing retro oversized sunglasses in clean white photo booth studio, modern flash aesthetics" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCOTUGOofeTByr8gLHEUz5IZbeBDAQcMRRdnExi6d22KYmvDYbismYP9fMTF1ADNki0QiwZ_ancawlY9PayzCUZZfxNB3N9Lad1E2fEpVEZA16w_LcrUQsmXhVskbDkrvv8xb4MBN5Fj32UQOqAcyRLA-YuJo1qFGREX068rmII_RLgLUIjAL_9l7TFuCG3lcfrPXf7Gll60Ra1MyRhHFvJ8HgW0vWBoOy1fSUTr8"/>
+</div>
+<div class="w-full h-11 bg-surface-container rounded-sm overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Candid celebration peace sign gesture with smiling friends in front of muted lavender photobooth background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABFHtLvijpyeHxP-Tb57lrrni9MBJ1pjtoOplVmqHsYfBfyQKHUMRkkEfwFgKS6009U1g_WxitureusuGiaiLWVrUuwvfpos4b7tJ1Q1HSuvjSxbno9L8zg-OMGI7xLnlvTCq-zMWzO0sj0FeI8hlyQPcz77x4sTSwWHILElKK6aMuBl32PQqihnlBq1kfXQgQn_rZ3xwGAKGWBa-992h8gMAzL8MNbe3F1PfZ0Oo"/>
+</div>
+<div class="w-full h-11 bg-surface-container rounded-sm overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Sweet expressive duo smiling holding instant camera props inside minimalist Korean-style photobooth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANZzJeG7tcKqPFKSBDhiw7WaaTL3ZHMDEF_OAxQ6v7ZoxZW6ObX4ZO45s4rXG5jgrR2XJsxdy-HpQDUk57RFFdsnzGB7XHnuOIy0Tjdqujj_aRaTlTIAjGmTh4CLZq-7cwK53KxUo7qO5_7SCfRxldjR_Vblk3TVtfG6MQWQtYtbZMLWs1Ttnbnqr5GZXUlr_GIHUDLD_a13ysOy_5L5QBFWT2mrGV3ImoXOd3HS4"/>
+</div>
+<div class="text-[6px] tracking-wider text-on-primary/80 font-bold uppercase py-0.5 text-center leading-none">
+          POSARA • 2025
+        </div>
+</div>
+<!-- File Details -->
+<div class="flex flex-col gap-1 min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-label-sm font-label-sm font-semibold">Siap Diunduh</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Strip #8842X</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-primary-container truncate">Retro Mood Strip</h4>
+<div class="flex flex-col gap-0.5 text-body-sm font-body-sm text-on-surface-variant">
+<p class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">photo_size_select_actual</span>
+            300 DPI Original Print
+          </p>
+<p class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">sd_storage</span>
+            3.2 MB • Format PNG HD
+          </p>
+</div>
+</div>
+</div>
+<!-- Format Download Selector for Friends -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between px-1">
+<label class="font-label-lg text-label-lg text-primary-container">Format Unduhan untuk Teman:</label>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Pilih bawaan</span>
+</div>
+<div class="grid grid-cols-1 gap-2" id="format-selector">
+<!-- Option 1: Full Strip -->
+<label class="flex items-center justify-between p-3 rounded-xl bg-surface-container-lowest shadow-sm cursor-pointer transition-all active:scale-[0.99] has-[:checked]:bg-surface-container-high">
+<div class="flex items-center gap-3">
+<input checked="" class="w-4 h-4 text-primary focus:ring-0 cursor-pointer" name="download_format" type="radio" value="strip"/>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-primary-container font-semibold">Photo Strip Utuh (PNG)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">1 lembar strip vertikal lengkap dengan frame estetis</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-secondary-fixed-variant text-label-sm font-label-sm">Rekomendasi</span>
+</label>
+<!-- Option 2: 4 Single Frames (ZIP) -->
+<label class="flex items-center justify-between p-3 rounded-xl bg-surface-container-lowest shadow-sm cursor-pointer transition-all active:scale-[0.99] has-[:checked]:bg-surface-container-high">
+<div class="flex items-center gap-3">
+<input class="w-4 h-4 text-primary focus:ring-0 cursor-pointer" name="download_format" type="radio" value="zip"/>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-primary-container font-semibold">Semua 4 Foto Terpisah (ZIP)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">File satuan resolusi penuh untuk feed / story</span>
+</div>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">4x JPG</span>
+</label>
+<!-- Option 3: Live Motion GIF -->
+<label class="flex items-center justify-between p-3 rounded-xl bg-surface-container-lowest shadow-sm cursor-pointer transition-all active:scale-[0.99] has-[:checked]:bg-surface-container-high">
+<div class="flex items-center gap-3">
+<input class="w-4 h-4 text-primary focus:ring-0 cursor-pointer" name="download_format" type="radio" value="gif"/>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-primary-container font-semibold">Live Motion GIF (Bergerak)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Animasi boomerang dari 4 jepretan shutter</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-label-sm font-label-sm font-bold">Populer</span>
+</label>
+</div>
+</div>
+<!-- 3-Step Scan Guide -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-sm">
+<h3 class="font-label-lg text-label-lg text-primary-container flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">tips_and_updates</span>
+        3 Langkah Mudah Tanpa Instalasi:
+      </h3>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-start gap-2.5">
+<div class="w-5 h-5 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-sm text-label-sm flex-shrink-0 mt-0.5">1</div>
+<p class="font-body-sm text-body-sm text-on-surface">Buka aplikasi <strong>Kamera</strong> di iPhone atau Android teman.</p>
+</div>
+<div class="flex items-start gap-2.5">
+<div class="w-5 h-5 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-sm text-label-sm flex-shrink-0 mt-0.5">2</div>
+<p class="font-body-sm text-body-sm text-on-surface">Arahkan lensa ke kode QR di layar ini.</p>
+</div>
+<div class="flex items-start gap-2.5">
+<div class="w-5 h-5 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-sm text-label-sm flex-shrink-0 mt-0.5">3</div>
+<p class="font-body-sm text-body-sm text-on-surface">Ketuk notifikasi safari/chrome untuk <strong>Simpan Gambar ke Galeri</strong>.</p>
+</div>
+</div>
+</div>
+<!-- Additional Quick Action Buttons -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<button class="w-full py-3.5 px-space-md rounded-xl bg-primary-container text-on-primary font-label-lg text-label-lg shadow-md active:translate-y-[1px] flex items-center justify-center gap-2 transition-all" id="native-share-btn">
+<span class="material-symbols-outlined text-[20px]">share</span>
+<span>Bagikan Tautan Cepat (WA / AirDrop)</span>
+</button>
+<button class="w-full py-3 px-space-md rounded-xl bg-surface-container-lowest text-primary-container font-label-lg text-label-lg shadow-sm active:translate-y-[1px] flex items-center justify-center gap-2 transition-all" id="direct-download-btn">
+<span class="material-symbols-outlined text-[20px]">download</span>
+<span>Simpan di HP Ini Saja</span>
+</button>
+</div>
+<!-- Security & Auto-Wipe Footer Notice -->
+<div class="flex items-center justify-center gap-1.5 text-center text-on-surface-variant font-body-sm text-body-sm px-space-sm pt-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary flex-shrink-0">verified_user</span>
+<p>Foto strip tersimpan aman dan otomatis terhapus permanen setelah 15 menit.</p>
+</div>
+</div>
+</div>
+<script>
+  // Countdown Timer Simulation
+  (function initCountdown() {
+    let duration = 9 * 60 + 48;
+    const timerDisplay = document.getElementById('countdown-timer');
+    if (!timerDisplay) return;
+
+    const interval = setInterval(() => {
+      duration--;
+      if (duration < 0) {
+        clearInterval(interval);
+        timerDisplay.textContent = 'Kadaluwarsa';
+        return;
+      }
+      const minutes = Math.floor(duration / 60);
+      const seconds = duration % 60;
+      timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }, 1000);
+  })();
+
+  // Copy Link Clipboard Action
+  const copyBtn = document.getElementById('copy-btn');
+  const copyText = document.getElementById('copy-text');
+  const copyIcon = document.getElementById('copy-icon');
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('https://posara.app/s/ps-8842x');
+        copyText.textContent = 'Tersalin!';
+        copyIcon.textContent = 'check';
+        copyBtn.classList.add('bg-secondary-container');
+        setTimeout(() => {
+          copyText.textContent = 'Salin';
+          copyIcon.textContent = 'content_copy';
+          copyBtn.classList.remove('bg-secondary-container');
+        }, 2200);
+      } catch (err) {
+        copyText.textContent = 'Tersalin!';
+        setTimeout(() => { copyText.textContent = 'Salin'; }, 2000);
+      }
+    });
+  }
+
+  // Web Share API Integration
+  const shareBtn = document.getElementById('native-share-btn');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: 'POSARA Photobooth Photo Strip',
+            text: 'Buka tautan ini untuk mengunduh strip foto photobooth kita kualitas tinggi HD!',
+            url: 'https://posara.app/s/ps-8842x',
+          });
+        } catch (e) {
+          // Dismissed or unsupported silently
+        }
+      } else {
+        // Fallback simulate copy and notify
+        if (copyBtn) copyBtn.click();
+      }
+    });
+  }
+
+  // Direct Download Trigger Feedback
+  const dlBtn = document.getElementById('direct-download-btn');
+  if (dlBtn) {
+    dlBtn.addEventListener('click', () => {
+      const origText = dlBtn.innerHTML;
+      dlBtn.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">progress_activity</span><span>Menyimpan ke Perangkat...</span>';
+      setTimeout(() => {
+        dlBtn.innerHTML = '<span class="material-symbols-outlined text-[20px] text-primary">check_circle</span><span>Tersimpan di Galeri!</span>';
+        setTimeout(() => {
+          dlBtn.innerHTML = origText;
+        }, 2500);
+      }, 1000);
+    });
+  }
+</script></main>
+</body></html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary": "#ffffff", "on-error": "#ffffff", "surface": "#f9f9ff", "inverse-on-surface": "#ebf1ff", "on-tertiary-fixed": "#1c192d", "on-secondary-fixed-variant": "#3a4858", "on-error-container": "#93000a", "on-surface": "#111c2c", "secondary-container": "#d5e4f8", "on-primary": "#ffffff", "secondary": "#516070", "surface-container-lowest": "#ffffff", "inverse-primary": "#b2c7ee", "tertiary-container": "#2b283d", "on-primary-fixed-variant": "#324768", "surface-dim": "#cfdaf1", "surface-container-high": "#dee9ff", "on-secondary-fixed": "#0e1d2b", "tertiary-fixed-dim": "#c9c3df", "surface-variant": "#d8e3fa", "on-tertiary-fixed-variant": "#48445b", "error": "#ba1a1a", "primary": "#001632", "tertiary": "#171328", "outline": "#74777e", "on-primary-fixed": "#021c3a", "on-surface-variant": "#44474e", "outline-variant": "#c4c6ce", "on-tertiary-container": "#948ea9", "error-container": "#ffdad6", "background": "#f9f9ff", "on-secondary-container": "#576676", "surface-container-low": "#f0f3ff", "surface-container-highest": "#d8e3fa", "inverse-surface": "#263142", "on-secondary": "#ffffff", "surface-bright": "#f9f9ff", "surface-container": "#e7eeff", "primary-container": "#142b4a", "secondary-fixed": "#d5e4f8", "surface-tint": "#4a5f81", "primary-fixed-dim": "#b2c7ee", "on-background": "#111c2c", "secondary-fixed-dim": "#b9c8db", "primary-fixed": "#d5e3ff", "on-primary-container": "#7d93b7", "tertiary-fixed": "#e6dffb" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin": "3rem", "space-md": "1rem", "space-xl": "2.5rem", "space-lg": "1.5rem", "gutter-mobile": "1rem", "margin-mobile": "1.25rem", "gutter": "1.5rem", "space-xs": "0.25rem", "space-sm": "0.5rem" }, fontFamily: { "headline-sm": ["Manrope"], "display-lg": ["Manrope"], "body-lg": ["Inter"], "label-sm": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Manrope"], "label-md": ["Inter"], "body-sm": ["Inter"], "display-lg-mobile": ["Manrope"], "headline-md": ["Manrope"], "headline-lg-mobile": ["Manrope"], "label-lg": ["Inter"] }, fontSize: { "headline-sm": ["20px", { lineHeight: "28px", letterSpacing: "-0.005em", fontWeight: "600" }], "display-lg": ["56px", { lineHeight: "64px", letterSpacing: "-0.03em", fontWeight: "800" }], "body-lg": ["18px", { lineHeight: "28px", letterSpacing: "-0.005em", fontWeight: "400" }], "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "700" }], "body-md": ["15px", { lineHeight: "22px", letterSpacing: "0em", fontWeight: "400" }], "headline-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }], "body-sm": ["13px", { lineHeight: "18px", letterSpacing: "0em", fontWeight: "400" }], "display-lg-mobile": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "800" }], "headline-md": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-lg-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "700" }], "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;min-height:100%;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col antialiased min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(20,43,74,0.04)] pt-safe"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="POSARA Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrD_795EGk3vXYXvCHbXBgWAdZDTcKpTZU0VwHzxffgrU4bAFpGBTo9SBKXsoG577YiF7bQefhl_WOmGjyuX6XZUgcdO-gf5GP-xn2Ts7VoVuF7zV-1vx54WgeOkv-v4hiz22K5KndcSotuUMwUYvEDdRTXU9kgDJQeISmR6MJE5PLJYE9HiaO-xyjunGhOMdmzzhIzHQMPM-U5w5DvpDaFZ3h9Kr6nd_EtvRIxEUkba"/><span class="font-headline-sm text-headline-sm text-primary-container tracking-tight">POSARA</span></div><div class="flex items-center gap-space-sm"><span class="font-label-md text-label-md text-secondary tracking-wide uppercase">Pilih Template</span><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_1px_4px_rgba(20,43,74,0.08)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX-O4LtlloGC1q3lrKWun2ebGcrLekPRW3C4SBqE-9JtrvbZTo7UZ-7gyQtIr58hEnhPrg_KckeCDAobb2fObB3ebGmoF9aninOE5603ZA-EM4S5hOQoSbdbwUP9p-Iuz6mCWH7Fbv4yl3ZbMj7eWWV47LP9_rjzGL9a1pdMme8GvWR5vY0Kdu7CrEkC9Z_rY1stgwPonmWe5WuMQYPg8kddY0IX8x4lU0Qm3Xb5M"/></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full pb-28">
+<!-- Stepper & Top Info Section -->
+<div class="px-margin-mobile pt-space-sm pb-space-md">
+<!-- Progress Indicator -->
+<div class="flex items-center justify-between mb-space-sm">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-sm text-label-sm tracking-wide">LANGKAH 1 DARI 3</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-6 h-1 rounded-full bg-primary-container"></div>
+<div class="w-2 h-1 rounded-full bg-outline-variant"></div>
+<div class="w-2 h-1 rounded-full bg-outline-variant"></div>
+</div>
+</div>
+<!-- Editorial Typography Title -->
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight">
+      Pilih Desain Strip Fotomu
+    </h1>
+<p class="font-body-sm text-body-sm text-secondary mt-1 max-w-[90%] leading-relaxed">
+      Tentukan format frame estetis sebelum sesi memotret dimulai. Kamu dapat menyesuaikan warna &amp; stiker nanti.
+    </p>
+</div>
+<!-- Format / Ratio Horizontal Filter Chips -->
+<div class="w-full overflow-x-auto no-scrollbar pl-margin-mobile pr-space-sm pb-space-sm">
+<div class="flex items-center gap-2 whitespace-nowrap" id="categoryFilterBar">
+<button class="filter-chip px-4 py-2 rounded-full bg-primary-container text-on-primary font-label-md text-label-md shadow-sm transition-all active:scale-95" data-filter="all">
+        Semua
+      </button>
+<button class="filter-chip px-4 py-2 rounded-full bg-surface-container-low text-on-surface-variant font-label-md text-label-md transition-all active:scale-95" data-filter="4-cut">
+        4-Frame Vertikal
+      </button>
+<button class="filter-chip px-4 py-2 rounded-full bg-surface-container-low text-on-surface-variant font-label-md text-label-md transition-all active:scale-95" data-filter="3-cut">
+        3-Frame Klasik
+      </button>
+<button class="filter-chip px-4 py-2 rounded-full bg-surface-container-low text-on-surface-variant font-label-md text-label-md transition-all active:scale-95" data-filter="grid">
+        Grid 2x2
+      </button>
+<button class="filter-chip px-4 py-2 rounded-full bg-surface-container-low text-on-surface-variant font-label-md text-label-md transition-all active:scale-95" data-filter="polaroid">
+        Polaroid Wide
+      </button>
+</div>
+</div>
+<!-- Interactive 2-Column Template Grid -->
+<div class="px-margin-mobile pt-space-xs">
+<div class="grid grid-cols-2 gap-space-sm" id="templateGrid">
+<!-- Card 1: Minimalist Navy 4-Cut (Selected by Default) -->
+<div class="template-card relative flex flex-col p-2.5 rounded-xl bg-surface-container-lowest shadow-md transition-all cursor-pointer group" data-id="1" data-name="Minimalist Navy 4-Cut" data-shots="4" data-type="4-cut">
+<!-- Visual Strip Preview Container -->
+<div class="relative w-full aspect-[2/3.8] bg-primary-container rounded-lg p-2 flex flex-col justify-between overflow-hidden shadow-inner">
+<!-- Selection Badge -->
+<div class="selection-indicator absolute top-2 right-2 z-10 w-6 h-6 rounded-full bg-surface-container-lowest text-primary-container flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+<!-- Micro photo strip frames -->
+<div class="flex flex-col gap-1.5 w-full">
+<div class="w-full aspect-[4/3] rounded bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Black and white candid portrait of a stylish young Asian woman smiling naturally, high contrast studio photobooth lighting, Swiss modernist composition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClXw4YqGo3CIB9i2ocWRBFoZIfE4HTBf6JpxsCoMJwnR_fsuVwYmvMQfx_6ZNKXXQyFMuaECi0Oio6WepSDBzO72MvoxEddyp1rqviaEXrzwzGW3YLaqEF9yV_QdprKdj5Rn6_2TnxRvVEMoRitchkfDAHPoyPO3BnLJjozAc2t8Xs0fN_yI5SROO27UtA0JBXPfnl1XpwUU-X-OpO0kDsr-rUzMtu8pwvBEtnOlw"/>
+</div>
+<div class="w-full aspect-[4/3] rounded bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Monochrome close up portrait of young couple making playful hand gestures in digital photobooth, crisp studio lighting, minimalist composition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK2k-zRwCzOyNWNQPeALOiT_gqjdBbB2IKuBuF4yO7Rlr6oW-VG2C2xRU-GNzBMqUaRwSH24DXQzY0ZjRQAmoGK5FjmoLVt-AVhV75tQRH7nmZ209Da6IqwxyB2OZKv6N19E2QveVs0Xri_aIkJCajGuvuV_fesPG7AM82s7jM00fiy7e9x8iF3mfIw33T_aELhUVAjCwyi9BbNNBSiWMNJokII4YJYp6a6Bx32qE"/>
+</div>
+<div class="w-full aspect-[4/3] rounded bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Black and white laughing face photo with soft grain, minimalist clean aesthetic, modern photo strip frame" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAniFWLR_H35QWvmQg2rb2i2Q-9rjZ6uq1g0f__qVWKbqbGZCEIEvRtE8B7LzUD_3NszCZxysFQk3n5ZVaZ9OqrF2tB3tkbQk5Rypqd7B8Zb-lLuRPnWquMqKwqRtT05my4XXR3q3VbWY4OLtPod4LkWSjCDfwoksrCXH7ygDG8mnc9tK07qeUJMFuajEi6rR4FfQWque6r8iIlnUyeGgjawD_frN7rYiX7fzHYmV4"/>
+</div>
+<div class="w-full aspect-[4/3] rounded bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Chic overhead candid portrait of girl posing playfully with sunglasses in photo booth, monochrome clean styling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4Wd7Um8UO7QD3i4oavjjNsQB7DsocleSHKo2QjiK9Ur0R18JY0ObdZal920EGj34qGhMKLZw9LIA3tcqpQZveAvYl8Sx4FonJxcw1kxS7dJbk7rbo-tWJtMyASY1gvOrDOOEtj31PAL5XBwUoHOU0LyNBwC1hOiYAxWuX2MQEcmI2S5kmPwnfOpt55fFGBRoMvZcSjR0y-bbUzAlwSdFsRyvZaVpV9V1ZlrdwUUI"/>
+</div>
+</div>
+<!-- Strip Footer Branding -->
+<div class="pt-1.5 flex flex-col items-center justify-center">
+<span class="font-headline-sm text-[9px] text-surface-container-lowest font-bold tracking-widest leading-none">POSARA</span>
+<span class="font-label-sm text-[7px] text-on-primary-container tracking-wider mt-0.5">24.10.2024 • JAKARTA</span>
+</div>
+</div>
+<!-- Template Meta Details -->
+<div class="mt-2.5 px-0.5">
+<div class="flex items-center justify-between">
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold truncate">Navy 4-Cut</h3>
+<span class="selected-pill font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-semibold">Aktif</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mt-0.5 text-[12px]">4 Frame • Rasio 2:6</p>
+<div class="flex items-center gap-1 mt-1 text-on-surface-variant font-label-sm text-[11px]">
+<span class="material-symbols-outlined text-[13px] text-primary-container">star</span>
+<span>Paling Populer</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Pastel Dream 3-Cut -->
+<div class="template-card relative flex flex-col p-2.5 rounded-xl bg-surface-container-lowest shadow-sm opacity-90 transition-all cursor-pointer group" data-id="2" data-name="Pastel Dream 3-Cut" data-shots="3" data-type="3-cut">
+<!-- Visual Strip Preview Container -->
+<div class="relative w-full aspect-[2/3.8] bg-tertiary-fixed rounded-lg p-2 flex flex-col justify-between overflow-hidden shadow-inner">
+<div class="selection-indicator hidden absolute top-2 right-2 z-10 w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+<!-- Micro decorative stickers (SVG) -->
+<div class="absolute -top-1 -left-1 text-on-tertiary-fixed-variant opacity-40">
+<span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+</div>
+<div class="absolute bottom-6 -right-1 text-on-tertiary-fixed-variant opacity-40">
+<span class="material-symbols-outlined text-[22px]">favorite</span>
+</div>
+<!-- Micro photo strip frames (3 cuts) -->
+<div class="flex flex-col gap-2 w-full pt-1">
+<div class="w-full aspect-square rounded-md bg-surface-container overflow-hidden shadow-xs">
+<img class="w-full h-full object-cover" data-alt="Playful pastel tone portrait of smiling female friends posing with peace signs in cheerful photo booth, warm studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6ft7t3dQz-mTAczD5c0u2piJzMJIWnj4pXyOz95oJ9HzbJXVJQnln5UxCSGRZcL1wsXu-dR_Su-kZTpiH9_XEHcLcEAGU0vOANilOcAgyFZp5kE64pTIc5a79VOxNBLP6ZWWcfv3Qqks03md8D0C9vvIjxtdqHaW1Vmc8L0UILioMzo3RmS6FMrtjGvnAJ0Bz_0jZQLbHwTHOemnsBMdcrgZLr7XXyHTCT4WVSrE"/>
+</div>
+<div class="w-full aspect-square rounded-md bg-surface-container overflow-hidden shadow-xs">
+<img class="w-full h-full object-cover" data-alt="Charming warm pastel lit selfie portrait of cute girl winking playfully, creative soft focus studio shot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvimrReomIEmO6MGmmBztvnUfejdgbJ7yvRBo4H1BsRSH8b5KTM-vvZIyPuZoSypHf_9M4HiAqX5vm7ahrhA3dBxmim39TqGsZ69MhbHghYA1_e6l-vHw_-_2UZbTMMDT15V1mIuwIY63_R7UeRTKSe60e1DIqSuCNQyWt4wi6-BXYZUK3vmXX6Gd0oXXAanbtOERjQmQgQmgnUKNZxr_jJDkYeIIeDteXA4i2ejE"/>
+</div>
+<div class="w-full aspect-square rounded-md bg-surface-container overflow-hidden shadow-xs">
+<img class="w-full h-full object-cover" data-alt="Two best friends smiling warmly together in modern colorful photobooth, aesthetic soft lavender and peach aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn0KF94LGKDCpeoEUrwBY24pkK_nOFqxedcszKPG2tw9x8zdjoTraiHKdcDmWd-tfw93Qig7kzATtWvFrzNXqEtrhksLrqBgyJdLXJRfxCO_qDhxgF9AQblHCm_8ZgAzgQVTfXtStQHoHVgHjb0uAj2OFalBO7vw46VvvQWdYkkY7pc5tT2UJql39ntLTICkxctG_D8HVsc7FGPcXNnuRLtkan5FaWTxjXxzE2Fs4"/>
+</div>
+</div>
+<!-- Strip Footer Branding -->
+<div class="pt-1.5 flex flex-col items-center justify-center">
+<span class="font-headline-sm text-[9px] text-on-tertiary-fixed font-bold tracking-widest leading-none">POSARA DREAM</span>
+<span class="font-label-sm text-[7px] text-on-tertiary-fixed-variant tracking-wider mt-0.5">SWEET MEMORY</span>
+</div>
+</div>
+<!-- Template Meta Details -->
+<div class="mt-2.5 px-0.5">
+<div class="flex items-center justify-between">
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold truncate">Pastel Dream</h3>
+<span class="selected-pill hidden font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-semibold">Aktif</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mt-0.5 text-[12px]">3 Frame • Rasio 1:3</p>
+<div class="flex items-center gap-1 mt-1 text-on-surface-variant font-label-sm text-[11px]">
+<span class="material-symbols-outlined text-[13px] text-secondary">palette</span>
+<span>Playful Pastel</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Film Noir Duo -->
+<div class="template-card relative flex flex-col p-2.5 rounded-xl bg-surface-container-lowest shadow-sm opacity-90 transition-all cursor-pointer group" data-id="3" data-name="Film Noir Duo" data-shots="2" data-type="polaroid">
+<!-- Visual Strip Preview Container -->
+<div class="relative w-full aspect-[2/3.8] bg-inverse-surface rounded-lg p-2.5 flex flex-col justify-between overflow-hidden shadow-inner">
+<div class="selection-indicator hidden absolute top-2 right-2 z-10 w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+<!-- Vintage Sprocket simulation along sides -->
+<div class="flex flex-col gap-3.5 w-full pt-1">
+<div class="relative w-full aspect-[4/3] rounded bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Grainy 35mm film aesthetic portrait of young man looking thoughtfully into camera, vintage analog cinematic photography tone" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6-FSkVc9_7jHig8xKn9njNXATulJ8UdFPfFSxsuSfjl2KF3-lx9Gs3LWGOAj1Ztvd_GIq_ryv06tbP4LPqAyYLUfYpxJpHJ69JDyD8GIjFt-e9bFKjf4wkJ-e79M0SQ658MaaVa9Qzp9KkMkSW9vY61f5yKe80bdlpfj-xoO66t1XwVGx_y_64Q7sIVMlTyElZC2YOZGl5odYCVI1TP1I85R-mkBCe0QK4H_DAP8"/>
+<span class="absolute bottom-1 left-1.5 text-[8px] font-mono text-surface-container-lowest/80 font-bold">KODAK 400</span>
+</div>
+<div class="relative w-full aspect-[4/3] rounded bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Moody cinematic portrait of friends laughing under warm amber and shadow lighting, analog film aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh6LqxXXwZ4tOD_vjezeTyPeTR1hc5eNE9E6thdNDzdON3UpyiZIej3N_aUjaYms5UHacalur1EhEsgvc1LGLA8sCdrymzvZYLCqgDv0hGZLl9kDR1I1eyjFtt-qJjglWviGnIyDwkbILnhtG3MWUL1u9Oisv6gUXiyYuNhdsQZNa_lDIQhgSyAMA-Cwnu24B4n9lNgKNI2L7PIIcf-Ns8x6xD2lNb4T8RjDalYCc"/>
+<span class="absolute bottom-1 left-1.5 text-[8px] font-mono text-surface-container-lowest/80 font-bold">POSARA NOIR</span>
+</div>
+</div>
+<!-- Bottom stamps -->
+<div class="pt-2 flex items-center justify-between px-1">
+<span class="font-label-sm text-[8px] text-surface-variant font-mono">ISO 400</span>
+<span class="font-label-sm text-[8px] text-surface-variant font-mono">EXP 02/02</span>
+</div>
+</div>
+<!-- Template Meta Details -->
+<div class="mt-2.5 px-0.5">
+<div class="flex items-center justify-between">
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold truncate">Film Noir Duo</h3>
+<span class="selected-pill hidden font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-semibold">Aktif</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mt-0.5 text-[12px]">2 Frame • Rasio 3:4</p>
+<div class="flex items-center gap-1 mt-1 text-on-surface-variant font-label-sm text-[11px]">
+<span class="material-symbols-outlined text-[13px] text-secondary">camera_roll</span>
+<span>Analog Grain</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Collage Grid 4 -->
+<div class="template-card relative flex flex-col p-2.5 rounded-xl bg-surface-container-lowest shadow-sm opacity-90 transition-all cursor-pointer group" data-id="4" data-name="Collage Grid 4" data-shots="4" data-type="grid">
+<!-- Visual Strip Preview Container -->
+<div class="relative w-full aspect-[2/3.8] bg-surface-container-high rounded-lg p-2 flex flex-col justify-between overflow-hidden shadow-inner">
+<div class="selection-indicator hidden absolute top-2 right-2 z-10 w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+<!-- 2x2 Square Grid -->
+<div class="grid grid-cols-2 gap-1.5 w-full my-auto">
+<div class="aspect-square rounded bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Chic editorial close up portrait photo of young woman smiling naturally with natural soft glow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiTycNdWBk9UI9T8dx6XDcnFIqoa3nagPqgxbQ1o5EnIngKjd-9BeJPTw2xt9JJvMncTqRzyf-OGdy1r9E9_qDZgoSV8HWBWVIPJC-WQyxjddAl3x4Sm1bKk8b2CZy3epWoPTKnvEy_E-Xy3CcB2e-Dg2PvWrR6Xnqf6eXYl0EEbxei0SGMsp6zejMMZnJPmR3P3vQ9LpxA0XcSvonkRI6FOH5ebQCWFt59hvnp-E"/>
+</div>
+<div class="aspect-square rounded bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Spontaneous laughing shot of modern youth posing for aesthetic photobooth session" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOU2NYP3pJMZ78FisibH04Blkg2CMQAU8uxLL1w-Gb0TOqh5hvdT8QvGz-vKDzpn0URPxpeYc_keAo0tInvy1f7GLIvLBhXAop5izArL_QN2f0FEOoh8WXgtUWNReDSejVWxdUSsTjzQxBcCJsPicZRJ-CWwUHUPj2guV-KsliwL3lodiYQfohOP4gzJ04LNyOvnp4712H4kPNq1UftJr7Zy9dYm5sAesrJsXCzmA"/>
+</div>
+<div class="aspect-square rounded bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Side profile shot of artistic young woman looking happy in crisp gallery light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyCA3GYi_EHa6H8hIxXYBSjDbbTXjUPkRS_-EooYLxhACoyxG-tbeZO-zxYWqQ7Rdhz5Bfax6oNraEaPrGS9hFICr1xKpdwKky2-dc_ARBhv31MeeQiLxAGeO1YkG8UfCe1PqYFhnWdY9XO1rRtBbYNbRv4jTonfhY5aLwlRXqyC6JSr6X0D2z8dANdMSGNEReEeeykQro4QT2lAFW_CIm1evESgAe-v7oGv7HZBQ"/>
+</div>
+<div class="aspect-square rounded bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Hand heart gesture celebration portrait in trendy photo booth with modern clean colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmRVY6Ap1BPEMyKqb60WC53MT1OskJSGFygNamSzP-3LKGHbPAbdI-PtmBzXomihuQeM-a6Jm32m8-N0igW1SmyRL23wROF6AiKP9Um_nn7WQhBGRbYVzTTyvvB2GKPy1K1sq4BEA3Cnpjy2wx-oDA2zObmf1yeftWRBqOe0nhQ00eXW68nexCt_IOE0JYqpRwlt3hQ_5_A0WFxwAHvsuK_4Hhb1-QsuXA9vI0zUs"/>
+</div>
+</div>
+<!-- Bottom tag -->
+<div class="pt-1 flex justify-center">
+<span class="font-label-sm text-[8px] text-on-surface-variant font-semibold tracking-widest">MINIMAL GRID • 2024</span>
+</div>
+</div>
+<!-- Template Meta Details -->
+<div class="mt-2.5 px-0.5">
+<div class="flex items-center justify-between">
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold truncate">Collage Grid 4</h3>
+<span class="selected-pill hidden font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-semibold">Aktif</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mt-0.5 text-[12px]">4 Frame • Rasio 1:1</p>
+<div class="flex items-center gap-1 mt-1 text-on-surface-variant font-label-sm text-[11px]">
+<span class="material-symbols-outlined text-[13px] text-secondary">grid_goldenratio</span>
+<span>Swiss Clean</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pengaturan Tambahan (Setup Options Section) -->
+<div class="px-margin-mobile pt-space-lg">
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]">tune</span>
+<h2 class="font-headline-sm text-[17px] text-primary-container font-bold">
+            Pengaturan Sesi Foto
+          </h2>
+</div>
+<span class="font-label-sm text-[11px] text-secondary px-2 py-0.5 rounded-full bg-surface-container-highest">Opsional</span>
+</div>
+<!-- 1. Filter Kamera Awal -->
+<div class="mt-space-sm">
+<label class="block font-label-md text-label-md text-on-surface font-semibold mb-2">
+          Tone &amp; Filter Awal
+        </label>
+<div class="flex items-center gap-3 overflow-x-auto no-scrollbar py-1">
+<!-- Filter 1: Original (Selected) -->
+<button class="filter-opt flex flex-col items-center gap-1.5 flex-shrink-0 active:scale-95 transition-transform" data-filter-name="Original">
+<div class="w-12 h-12 rounded-full p-0.5 bg-primary-container filter-ring transition-all">
+<div class="w-full h-full rounded-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Natural skin tone lighting test portrait, neutral balanced colors for photobooth preset preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6WnLuSkQM2Z7KsTDz76Gtxurt57VioMiv-tutRrbJQ1EKYNHOjgvPZh63cGFdX_G1_ZYz8VBDbdu8NGhgHkL5lDM-k5qy3cbAkwGz0R6t785_yIC8eBswxLV4zU5rpokyl5Mtw3elXHjWWC7yAEI2B3l8AZVMRz4N4l3HBJqNTinxG6psxIPivSfNVcDCqLntoi2WIHf4J4CwC0fyLY-r94r_hmC_hADY3_NSIXA"/>
+</div>
+</div>
+<span class="filter-opt-text font-label-sm text-[11px] text-primary-container font-bold">Original</span>
+</button>
+<!-- Filter 2: Soft B&W -->
+<button class="filter-opt flex flex-col items-center gap-1.5 flex-shrink-0 active:scale-95 transition-transform" data-filter-name="Soft B&amp;W">
+<div class="w-12 h-12 rounded-full p-0.5 bg-transparent filter-ring transition-all">
+<div class="w-full h-full rounded-full bg-surface-container-highest grayscale overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Black and white high dynamic range portrait preview for photobooth camera filter preset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwFwrAAUqygDWfQlpEJktievm3uQmAZA5ontHZ6LapiQKLBGLKmL4w9AzFQzxGpcTujc3IaiBwTVAJH_qC-XUXL4wdBDPntuGin--J0YPI1WapDFiRinOkw74u_uC_QyE2SCCruc6Jv_Npkz74Dh5Z-ASbrcLOplBdAzeMAQOdLVfTU4yBMTb4QpK-cCfAcjIA3LG2VqUIvWGkKMQqEqCaaEdoeFREKApK_MsdvzA"/>
+</div>
+</div>
+<span class="filter-opt-text font-label-sm text-[11px] text-secondary">Soft B&amp;W</span>
+</button>
+<!-- Filter 3: Warm Film -->
+<button class="filter-opt flex flex-col items-center gap-1.5 flex-shrink-0 active:scale-95 transition-transform" data-filter-name="Warm Film">
+<div class="w-12 h-12 rounded-full p-0.5 bg-transparent filter-ring transition-all">
+<div class="w-full h-full rounded-full bg-tertiary-fixed overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Golden hour warm amber tone photo studio portrait for warm film photobooth preset preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMfoT19ckyIr5YZuTuPgM7uZ-sbHKRWXtDAqBVSIrQkXXaoEbqtxuCuDrGAnknMsW-viMsHlqnUMgduM3RxWGjfaxzg-pZtExSC494n3KH7XhguTvV-9OQPk6x7wN3A8lgTOQ_qyUcMG7NKX3oWmT2E9sWNJRvuEsZzsaE5HVJnG0So9Xp9yLcsS_FW0l0JZZnoVxCHnHQZrXmS6xd2j4-jNEfz9pRb_aI2Eu-Pko"/>
+</div>
+</div>
+<span class="filter-opt-text font-label-sm text-[11px] text-secondary">Warm Film</span>
+</button>
+<!-- Filter 4: Pastel Glow -->
+<button class="filter-opt flex flex-col items-center gap-1.5 flex-shrink-0 active:scale-95 transition-transform" data-filter-name="Pastel Glow">
+<div class="w-12 h-12 rounded-full p-0.5 bg-transparent filter-ring transition-all">
+<div class="w-full h-full rounded-full bg-secondary-fixed overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Soft dreamy pastel pink and lilac highlighted portrait of girl smiling in photobooth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsRjxTtVovomASW_xPgbvBbw9CTlzc-y_38Kxpih5dG6kqQxqyjzCEZObFVu4-WRh890ZYftgK8yfza8t5HiEZifJpIrjtodl2l6UjLIJh_1PN4MhXFMme7DcOMV1JzbqkiXQF8atL8pfwN5Zv5mzYQfnFkbZeSaAwLeki55HxRaJuL5UcO52cbYhm7q8s72SwVeEf0TY-ve46RGE7arwmxxLLVowWv3bKNh8m6Bk"/>
+</div>
+</div>
+<span class="filter-opt-text font-label-sm text-[11px] text-secondary">Pastel Glow</span>
+</button>
+<!-- Filter 5: Cool Tone -->
+<button class="filter-opt flex flex-col items-center gap-1.5 flex-shrink-0 active:scale-95 transition-transform" data-filter-name="Cool Tone">
+<div class="w-12 h-12 rounded-full p-0.5 bg-transparent filter-ring transition-all">
+<div class="w-full h-full rounded-full bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Cool cyan and clean blue cinematic modernist lighting portrait for photobooth preset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlq2KD3286NnsgSRbwUxkC6iGip2EY2Rz-iUUKGrbN8FXjQh4DeEYyOPR4Q5pVkMwj62ostdVJ5RDhzjB2fgkaIyT5a9zAquV5K9CKFRwKPumOfELjWj0nw1C3DCAurcSAbFcoL5qI8EFpW2IsRvzEabisN09GTN25ycK4rz1EcmIVhGjjPtSjHgifjFYR-zdY9l2-PZ2n-MORdbYYfvxLeGpSl2_I8PDqwn7PZ50"/>
+</div>
+</div>
+<span class="filter-opt-text font-label-sm text-[11px] text-secondary">Cool Tone</span>
+</button>
+</div>
+</div>
+<!-- 2. Timer Countdown & Flash Row -->
+<div class="mt-space-md pt-space-sm border-t border-surface-container-highest/60 flex flex-col gap-3">
+<!-- Timer Select -->
+<div class="flex items-center justify-between">
+<div>
+<div class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[17px] text-secondary">timer</span>
+              Countdown Otomatis
+            </div>
+<span class="font-body-sm text-[11px] text-secondary">Waktu jeda antar pose foto</span>
+</div>
+<div class="flex items-center p-1 rounded-xl bg-surface-container-highest" id="timerGroup">
+<button class="timer-btn px-2.5 py-1 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm transition-colors" data-timer="3">
+              3 dtk
+            </button>
+<button class="timer-btn px-2.5 py-1 rounded-lg text-on-surface-variant font-label-sm text-label-sm transition-colors" data-timer="5">
+              5 dtk
+            </button>
+<button class="timer-btn px-2.5 py-1 rounded-lg text-on-surface-variant font-label-sm text-label-sm transition-colors" data-timer="10">
+              10 dtk
+            </button>
+</div>
+</div>
+<!-- Screen Flash Light -->
+<div class="flex items-center justify-between pt-1">
+<div>
+<div class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[17px] text-secondary">flare</span>
+              Mode Flash Layar
+            </div>
+<span class="font-body-sm text-[11px] text-secondary">Layar putih terang untuk cahaya lembut</span>
+</div>
+<!-- Interactive Switch -->
+<button aria-checked="true" class="w-12 h-6 rounded-full bg-primary-container p-0.5 transition-colors relative flex items-center" id="flashToggle" role="switch">
+<span class="w-5 h-5 rounded-full bg-surface-container-lowest shadow-md transform translate-x-6 transition-transform"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Micro Guide / Delight Card -->
+<div class="px-margin-mobile pt-space-sm">
+<div class="flex items-start gap-3 p-3.5 rounded-xl bg-secondary-fixed/50">
+<span class="material-symbols-outlined text-primary-container text-[20px] shrink-0 mt-0.5">tips_and_updates</span>
+<p class="font-body-sm text-[12px] text-on-secondary-fixed-variant leading-relaxed">
+<strong>Tips Photobooth:</strong> Kamera akan mengambil <span class="font-semibold text-primary" id="hintShotsText">4 foto berturut-turut</span> sesuai template. Siapkan ekspresi terbaikmu!
+      </p>
+</div>
+</div>
+<!-- Floating Sticky Bottom Action Bar -->
+<div class="fixed bottom-20 left-0 right-0 z-40 px-margin-mobile max-w-lg mx-auto">
+<div class="p-3 rounded-2xl bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_12px_32px_rgba(20,43,74,0.16)] flex flex-col gap-2">
+<!-- Mini Summary Indicator -->
+<div class="flex items-center justify-between px-1">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Format Terpilih</span>
+</div>
+<span class="font-label-md text-label-md text-primary-container font-bold" id="bottomSummaryLabel">
+          Minimalist Navy 4-Cut (4 Foto)
+        </span>
+</div>
+<!-- Main Action Shutter CTA -->
+<a class="w-full h-13 py-3 px-4 rounded-xl bg-primary-container text-on-primary flex items-center justify-center gap-2 font-headline-sm text-[15px] font-bold tracking-tight shadow-md hover:brightness-110 active:translate-y-0.5 transition-all" data-path="photobooth-kamera" href="#" id="btnNext">
+<span>Buka Kamera Photobooth</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<script>
+(function() {
+  // 1. Template Card Selection Logic
+  const templateCards = document.querySelectorAll('.template-card');
+  const bottomSummary = document.getElementById('bottomSummaryLabel');
+  const hintShots = document.getElementById('hintShotsText');
+
+  templateCards.forEach(card => {
+    card.addEventListener('click', function() {
+      // Clear all active styling
+      templateCards.forEach(c => {
+        c.classList.remove('shadow-md');
+        c.classList.add('shadow-sm', 'opacity-90');
+        const indicator = c.querySelector('.selection-indicator');
+        const pill = c.querySelector('.selected-pill');
+        if (indicator) indicator.classList.add('hidden');
+        if (pill) pill.classList.add('hidden');
+      });
+
+      // Activate clicked card
+      this.classList.remove('opacity-90', 'shadow-sm');
+      this.classList.add('shadow-md');
+      const indicator = this.querySelector('.selection-indicator');
+      const pill = this.querySelector('.selected-pill');
+      if (indicator) indicator.classList.remove('hidden');
+      if (pill) pill.classList.remove('hidden');
+
+      // Update summary texts
+      const name = this.getAttribute('data-name');
+      const shots = this.getAttribute('data-shots');
+      if (bottomSummary) {
+        bottomSummary.textContent = `${name} (${shots} Foto)`;
+      }
+      if (hintShots) {
+        hintShots.textContent = `${shots} foto berturut-turut`;
+      }
+    });
+  });
+
+  // 2. Format Category Filter Chips
+  const filterChips = document.querySelectorAll('.filter-chip');
+  filterChips.forEach(chip => {
+    chip.addEventListener('click', function() {
+      filterChips.forEach(c => {
+        c.classList.remove('bg-primary-container', 'text-on-primary', 'shadow-sm');
+        c.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+      });
+      this.classList.add('bg-primary-container', 'text-on-primary', 'shadow-sm');
+      this.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+
+      const filterVal = this.getAttribute('data-filter');
+      templateCards.forEach(card => {
+        const type = card.getAttribute('data-type');
+        if (filterVal === 'all' || type === filterVal) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // 3. Preset Filter Options Logic
+  const filterOpts = document.querySelectorAll('.filter-opt');
+  filterOpts.forEach(opt => {
+    opt.addEventListener('click', function() {
+      filterOpts.forEach(o => {
+        const ring = o.querySelector('.filter-ring');
+        const text = o.querySelector('.filter-opt-text');
+        ring.classList.remove('bg-primary-container');
+        ring.classList.add('bg-transparent');
+        text.classList.remove('text-primary-container', 'font-bold');
+        text.classList.add('text-secondary');
+      });
+      const thisRing = this.querySelector('.filter-ring');
+      const thisText = this.querySelector('.filter-opt-text');
+      thisRing.classList.remove('bg-transparent');
+      thisRing.classList.add('bg-primary-container');
+      thisText.classList.remove('text-secondary');
+      thisText.classList.add('text-primary-container', 'font-bold');
+    });
+  });
+
+  // 4. Timer Segmented Buttons
+  const timerBtns = document.querySelectorAll('.timer-btn');
+  timerBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      timerBtns.forEach(b => {
+        b.classList.remove('bg-primary-container', 'text-on-primary');
+        b.classList.add('text-on-surface-variant');
+      });
+      this.classList.add('bg-primary-container', 'text-on-primary');
+      this.classList.remove('text-on-surface-variant');
+    });
+  });
+
+  // 5. Flash Toggle
+  const flashToggle = document.getElementById('flashToggle');
+  let flashActive = true;
+  if (flashToggle) {
+    flashToggle.addEventListener('click', function() {
+      flashActive = !flashActive;
+      const thumb = this.querySelector('span');
+      if (flashActive) {
+        this.classList.remove('bg-surface-container-highest');
+        this.classList.add('bg-primary-container');
+        thumb.classList.remove('translate-x-0');
+        thumb.classList.add('translate-x-6');
+        this.setAttribute('aria-checked', 'true');
+      } else {
+        this.classList.remove('bg-primary-container');
+        this.classList.add('bg-surface-container-highest');
+        thumb.classList.remove('translate-x-6');
+        thumb.classList.add('translate-x-0');
+        this.setAttribute('aria-checked', 'false');
+      }
+    });
+  }
+})();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_-4px_20px_rgba(20,43,74,0.05)]" data-active-classes="text-primary-container font-label-md font-bold"><div class="flex items-center justify-around h-20 px-space-sm max-w-lg mx-auto"><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-1 text-secondary transition-colors" data-path="beranda" href="#"><span class="material-symbols-outlined text-[24px]">grid_view</span><span class="font-label-sm text-label-sm">Beranda</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-1 transition-colors text-primary-container font-label-md font-bold" data-path="pilih-template" href="#"><span class="material-symbols-outlined text-[24px]">dashboard_customize</span><span class="font-label-sm text-label-sm">Template</span></a><a class="flex flex-col items-center justify-center relative -top-3 min-w-[60px] min-h-[56px] transition-transform active:translate-y-0.5" data-path="photobooth-kamera" href="#"><div class="w-14 h-14 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-[0_8px_16px_rgba(20,43,74,0.24)]"><span class="material-symbols-outlined text-[28px]">photo_camera</span></div><span class="font-label-sm text-label-sm text-primary-container mt-1 font-semibold">Capture</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-1 text-secondary transition-colors" data-path="galeri-hasil" href="#"><span class="material-symbols-outlined text-[24px]">photo_library</span><span class="font-label-sm text-label-sm">Galeri</span></a></div></nav></body></html>

@@ -1,0 +1,6 @@
+{
+  "name": "POSARA - Photobooth Digital #1 di Browser",
+  "description": "Photobooth online modern bergaya Swiss dengan pilihan template estetik, kamera langsung, filter vintage & Y2K, custom strip, dan unduh HD instan.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
