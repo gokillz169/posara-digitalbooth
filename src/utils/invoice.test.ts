@@ -30,14 +30,14 @@ test('buildOrderInvoiceData computes complete itemized breakdown and status labe
     customerEmail: 'siti@example.com',
     requestedPlan: 'creator',
     billingCycle: 'monthly',
-    amountIdr: 10000,
+    amountIdr: 15000,
     paymentNote: 'ShopeePay a.n. Siti',
     reviewedByEmail: 'mutawakkils16@gmail.com',
     status: 'approved'
   });
 
   assert.equal(inv.invoiceNumber, 'INV-CRT-261116-9A2B');
-  assert.equal(inv.totalIdr, 10000);
+  assert.equal(inv.totalIdr, 15000);
   assert.equal(inv.adminFeeIdr, 0);
   assert.equal(inv.statusLabel, 'LUNAS · PAKET AKTIF');
   assert.equal(inv.merchantName, 'POSARA DIGITAL BOOTH');
@@ -45,6 +45,6 @@ test('buildOrderInvoiceData computes complete itemized breakdown and status labe
 
   const summary = formatInvoiceSummaryText(inv);
   assert.ok(summary.includes('INV-CRT-261116-9A2B'));
-  assert.ok(summary.includes('Rp 10.000'));
+  assert.ok(summary.includes('Rp 15.000'));
   assert.ok(summary.includes('LUNAS · PAKET AKTIF'));
 });

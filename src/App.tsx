@@ -4,7 +4,6 @@
  */
 
 import { useState, useEffect } from 'react';
-import { onAuthStateChanged, User } from 'firebase/auth';
 import { CapturedFrame, GalleryStrip, SessionSettings, ViewTab } from './types/photobooth';
 import {
   FILTER_OPTIONS,
@@ -14,26 +13,24 @@ import {
   PHOTO_TEMPLATES
 } from './data/mockData';
 import {
+  AppUser,
   UpgradeRequestRecord,
-  auth,
-  loadAllUpgradeRequestsForAdmin,
-  loadBoothSettings,
-  loadOrCreateUserPlan,
-  loadUserUpgradeRequests,
-  persistUserPlanCredits,
-  reviewUpgradeRequestAsAdmin,
-  saveBoothSettings,
-  signInOwnerWithGoogle,
-  signInVisitorWithGoogle,
-  signOutOwner,
-  signOutUser,
-  submitUpgradeRequest,
-  subscribeAdminUpgradeRequests,
-  subscribePublicBoothConfig,
-  subscribeUserPlan,
-  subscribeUserUpgradeRequests,
-  syncAdminProfile
-} from './firebase';
+  loadAllUpgradeRequestsForAdminSupabase,
+  loadBoothSettingsSupabase,
+  loadOrCreateUserPlanSupabase,
+  loadUserUpgradeRequestsSupabase,
+  onSupabaseAuthStateChanged,
+  persistUserPlanCreditsSupabase,
+  reviewUpgradeRequestSupabase,
+  saveBoothSettingsSupabase,
+  signInWithGoogleSupabase,
+  signOutSupabase,
+  submitUpgradeRequestSupabase,
+  subscribeAdminUpgradeRequestsSupabase,
+  subscribePublicBoothConfigSupabase,
+  subscribeUserPlanSupabase,
+  subscribeUserUpgradeRequestsSupabase
+} from './supabaseDb';
 import {
   BoothSettingsData,
   DEFAULT_KIOSK_PIN,
@@ -68,6 +65,12 @@ import { GalleryView } from './components/GalleryView';
 import { SubscriptionView } from './components/SubscriptionView';
 import { AdminAccessGate } from './components/AdminAccessGate';
 import { PremiumLockModal } from './components/PremiumLockModal';
+import {
+  deleteGalleryStrip,
+  loadGalleryStrips,
+  persistNewGalleryStrip,
+  toggleStripFavorite
+} from './utils/galleryStorage';
 
 const LOCAL_PLAN_STORAGE_KEY = 'posara_free_plan_v1';
 
@@ -117,8 +120,8 @@ export default function App() {
   const [unlockPinInput, setUnlockPinInput] = useState<string>('');
   const [unlockPinError, setUnlockPinError] = useState<string | null>(null);
 
-  // Firebase Auth, Booth Settings & Plan Quota state
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  // Supabase Auth, Booth Settings & Plan Quota state
+  const [currentUser, setCurrentUser] = useState<AppUser | null>(null);
   const [authLoading, setAuthLoading] = useState<boolean>(true);
   const [boothSettings, setBoothSettings] = useState<BoothSettingsData>(INITIAL_BOOTH_SETTINGS);
   const [isSavingSettings, setIsSavingSettings] = useState<boolean>(false);
@@ -194,7 +197,7 @@ export default function App() {
 
   // Subscribe to public booth config (event branding, auto-reset, public QRIS merchant string)
   useEffect(() => {
-    const unsubPublic = subscribePublicBoothConfig((publicCfg) => {
+    const unsubPublic = subscribePublicBoothConfigSupabase((publicCfg) => {
       setBoothSettings((prev) => ({
         ...prev,
         autoResetEnabled: publicCfg.autoResetEnabled,
@@ -206,7 +209,7 @@ export default function App() {
     return () => unsubPublic();
   }, []);
 
-  // Subscribe to Firebase Auth state & attach real-time Firestore listeners
+  // Subscribe to Supabase Auth state & attach real-time subscriptions
   useEffect(() => {
     let planUnsub: (() => void) | null = null;
     let userReqUnsub: (() => void) | null = null;
@@ -227,18 +230,18 @@ export default function App() {
       }
     };
 
-    const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
+    const unsubscribeAuth = onSupabaseAuthStateChanged(async (user) => {
       cleanupUserListeners();
       setCurrentUser(user);
       setAuthLoading(false);
 
-      if (user && user.emailVerified) {
+      if (user && user.emailVerified && user.email) {
         const vipAccount = isComplimentaryStudioEmail(user.email, user.emailVerified);
         if (vipAccount) {
           setUserPlan(createPlanStateForTier('studio'));
         }
         try {
-          const loadedPlan = await loadOrCreateUserPlan(user);
+          const loadedPlan = await loadOrCreateUserPlanSupabase(user.uid, user.email);
           setUserPlan(loadedPlan);
         } catch (err) {
           console.error('Failed to sync user plan:', err);
@@ -246,10 +249,10 @@ export default function App() {
             setUserPlan(createPlanStateForTier('studio'));
           }
         }
-        planUnsub = subscribeUserPlan(user, (livePlan) => {
+        planUnsub = subscribeUserPlanSupabase(user.uid, (livePlan) => {
           setUserPlan(livePlan);
         });
-        userReqUnsub = subscribeUserUpgradeRequests(user, (liveReqs) => {
+        userReqUnsub = subscribeUserUpgradeRequestsSupabase(user.uid, (liveReqs) => {
           setUserUpgradeRequests(liveReqs);
         });
       } else if (!user) {
@@ -262,11 +265,10 @@ export default function App() {
 
       if (user && isAuthorizedAdminEmail(user.email, user.emailVerified)) {
         try {
-          await syncAdminProfile(user);
-          const loaded = await loadBoothSettings(user);
+          const loaded = await loadBoothSettingsSupabase();
           setBoothSettings(loaded.settings);
           setIsLoadingRequests(true);
-          adminReqUnsub = subscribeAdminUpgradeRequests(user, (liveAllReqs) => {
+          adminReqUnsub = subscribeAdminUpgradeRequestsSupabase((liveAllReqs) => {
             setAdminUpgradeRequests(liveAllReqs);
             setIsLoadingRequests(false);
           });
@@ -351,27 +353,20 @@ export default function App() {
     };
   }, [kioskLocked]);
 
-  // Load gallery items from localStorage with fallback
-  const [galleryItems, setGalleryItems] = useState<GalleryStrip[]>(() => {
-    try {
-      const stored = localStorage.getItem('posara_gallery_strips');
-      if (stored) {
-        return JSON.parse(stored);
-      }
-    } catch {
-      // fallback
-    }
-    return INITIAL_GALLERY_STRIPS;
-  });
+  // High-capacity gallery state with IndexedDB persistence & Supabase Storage backup
+  const [galleryItems, setGalleryItems] = useState<GalleryStrip[]>(INITIAL_GALLERY_STRIPS);
 
-  // Sync gallery items to localStorage
   useEffect(() => {
-    try {
-      localStorage.setItem('posara_gallery_strips', JSON.stringify(galleryItems));
-    } catch {
-      // silent
-    }
-  }, [galleryItems]);
+    let isMounted = true;
+    void loadGalleryStrips().then((loaded) => {
+      if (isMounted && loaded.length > 0) {
+        setGalleryItems(loaded);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Reset scroll to top on view navigation
   useEffect(() => {
@@ -404,7 +399,7 @@ export default function App() {
     setUserPlan(nextState);
     if (currentUser && currentUser.emailVerified) {
       try {
-        await persistUserPlanCredits(currentUser, nextState);
+        await persistUserPlanCreditsSupabase(currentUser.uid, nextState);
       } catch (err) {
         console.error('Failed to persist credit deduction:', err);
       }
@@ -444,16 +439,17 @@ export default function App() {
 
   const handleSaveToGallery = (newStrip: GalleryStrip) => {
     setGalleryItems((prev) => [newStrip, ...prev]);
+    void persistNewGalleryStrip(newStrip, galleryItems, (backedUp) => {
+      setGalleryItems((prev) => prev.map((s) => (s.id === backedUp.id ? backedUp : s)));
+    });
   };
 
   const handleToggleFavorite = (stripId: string) => {
-    setGalleryItems((prev) =>
-      prev.map((s) => (s.id === stripId ? { ...s, isFavorite: !s.isFavorite } : s))
-    );
+    void toggleStripFavorite(stripId, galleryItems).then(setGalleryItems);
   };
 
   const handleDeleteStrip = (stripId: string) => {
-    setGalleryItems((prev) => prev.filter((s) => s.id !== stripId));
+    void deleteGalleryStrip(stripId, galleryItems).then(setGalleryItems);
   };
 
   const handleSelectStripToEdit = (strip: GalleryStrip) => {
@@ -487,11 +483,11 @@ export default function App() {
   };
 
   const handleSignInOwner = async () => {
-    await signInOwnerWithGoogle();
+    await signInWithGoogleSupabase();
   };
 
   const handleSignOutOwner = async () => {
-    await signOutOwner();
+    await signOutSupabase();
     setBoothSettings((prev) => ({
       ...prev,
       kioskPin: DEFAULT_KIOSK_PIN
@@ -506,7 +502,7 @@ export default function App() {
     }
     setIsSavingSettings(true);
     try {
-      await saveBoothSettings(currentUser, next);
+      await saveBoothSettingsSupabase(next);
       setBoothSettings(next);
     } finally {
       setIsSavingSettings(false);
@@ -528,16 +524,7 @@ export default function App() {
 
   const handleUnlockViaGoogleOwner = async () => {
     try {
-      const signedInUser = await signInOwnerWithGoogle();
-      if (isAuthorizedAdminEmail(signedInUser.email, signedInUser.emailVerified)) {
-        setKioskLocked(false);
-        setUnlockModalOpen(false);
-        setUnlockPinInput('');
-        setUnlockPinError(null);
-        setCurrentTab('admin');
-      } else {
-        setUnlockPinError('Akun Google tersebut bukan Owner terdaftar.');
-      }
+      await signInWithGoogleSupabase();
     } catch {
       setUnlockPinError('Verifikasi Google dibatalkan atau gagal.');
     }
@@ -547,7 +534,7 @@ export default function App() {
     if (!currentUser || !isOwnerAuthenticated) return;
     setIsLoadingRequests(true);
     try {
-      const allRequests = await loadAllUpgradeRequestsForAdmin(currentUser);
+      const allRequests = await loadAllUpgradeRequestsForAdminSupabase();
       setAdminUpgradeRequests(allRequests);
     } finally {
       setIsLoadingRequests(false);
@@ -561,24 +548,24 @@ export default function App() {
     if (!currentUser || !isOwnerAuthenticated) {
       throw new Error('Unauthorized');
     }
-    await reviewUpgradeRequestAsAdmin(currentUser, request, decision);
-    const updated = await loadAllUpgradeRequestsForAdmin(currentUser);
+    await reviewUpgradeRequestSupabase(request, decision, currentUser.email || '');
+    const updated = await loadAllUpgradeRequestsForAdminSupabase();
     setAdminUpgradeRequests(updated);
 
-    if (request.uid === currentUser.uid) {
-      const reloadedPlan = await loadOrCreateUserPlan(currentUser);
+    if (request.uid === currentUser.uid && currentUser.email) {
+      const reloadedPlan = await loadOrCreateUserPlanSupabase(currentUser.uid, currentUser.email);
       setUserPlan(reloadedPlan);
-      const myRequests = await loadUserUpgradeRequests(currentUser);
+      const myRequests = await loadUserUpgradeRequestsSupabase(currentUser.uid);
       setUserUpgradeRequests(myRequests);
     }
   };
 
   const handleSignInVisitor = async () => {
-    await signInVisitorWithGoogle();
+    await signInWithGoogleSupabase();
   };
 
   const handleSignOutVisitor = async () => {
-    await signOutUser();
+    await signOutSupabase();
     setPreviewPlanOverride(null);
     setPreviewPlanState(null);
     setUserUpgradeRequests([]);
@@ -598,10 +585,15 @@ export default function App() {
     invoiceNumber?: string;
     paymentNote: string;
   }) => {
-    if (!currentUser) {
+    if (!currentUser || !currentUser.email) {
       throw new Error('Silakan masuk dengan akun Google terlebih dahulu.');
     }
-    const created = await submitUpgradeRequest(currentUser, payload);
+    const created = await submitUpgradeRequestSupabase({
+      ...payload,
+      uid: currentUser.uid,
+      email: currentUser.email,
+      displayName: currentUser.displayName || 'Pengguna POSARA'
+    });
     setUserUpgradeRequests((prev) => [created, ...prev]);
     if (isOwnerAuthenticated) {
       setAdminUpgradeRequests((prev) => [created, ...prev]);

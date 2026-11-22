@@ -200,7 +200,7 @@ export function getPlanPriceInfo(
     };
   }
 
-  const baseMonthly = tier === 'studio' ? 15000 : 10000;
+  const baseMonthly = 15000;
   if (selectedCycle === 'yearly') {
     const monthlyEquivalentIdr = Math.round(baseMonthly * 0.8);
     const amountIdr = monthlyEquivalentIdr * 12;

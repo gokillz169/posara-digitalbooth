@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { User } from 'firebase/auth';
 import { BoothSettingsData, OWNER_EMAIL, isAuthorizedAdminEmail } from '../utils/adminAccess';
 import { AdminDashboard } from './AdminDashboard';
 import { ViewTab } from '../types/photobooth';
 import { PlanTier } from '../utils/subscription';
-import { UpgradeRequestRecord } from '../firebase';
+import { AppUser, UpgradeRequestRecord } from '../supabaseDb';
 
 interface AdminAccessGateProps {
-  user: User | null;
+  user: AppUser | null;
   authLoading: boolean;
   kioskLocked: boolean;
   boothSettings: BoothSettingsData;
@@ -72,7 +71,7 @@ export const AdminAccessGate: React.FC<AdminAccessGateProps> = ({
       } else if (message.includes('popup-blocked')) {
         setAuthError('Popup login diblokir browser. Izinkan popup lalu coba lagi.');
       } else if (message.includes('unauthorized-domain')) {
-        setAuthError('Domain ini belum terdaftar di Firebase Auth Authorized Domains.');
+        setAuthError('Domain ini belum terdaftar di daftar redirect URL Supabase Auth.');
       } else {
         setAuthError('Gagal masuk dengan akun Google. Silakan coba lagi.');
       }

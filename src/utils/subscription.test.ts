@@ -48,10 +48,10 @@ test('getPlanPriceInfo and generateUpgradeReferenceCode compute valid IDR totals
   assert.equal(weekend.amountIdr, 5000);
 
   const creatorMonthly = getPlanPriceInfo('creator', 'monthly');
-  assert.equal(creatorMonthly.amountIdr, 10000);
+  assert.equal(creatorMonthly.amountIdr, 15000);
   const creatorYearly = getPlanPriceInfo('creator', 'yearly');
-  assert.equal(creatorYearly.monthlyEquivalentIdr, 8000);
-  assert.equal(creatorYearly.amountIdr, 96000);
+  assert.equal(creatorYearly.monthlyEquivalentIdr, 12000);
+  assert.equal(creatorYearly.amountIdr, 144000);
 
   const studioMonthly = getPlanPriceInfo('studio', 'monthly');
   assert.equal(studioMonthly.billingCycle, 'monthly');

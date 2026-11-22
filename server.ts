@@ -18,6 +18,59 @@ import {
   TtlLruCache,
   extractClientIp
 } from './src/utils/rateLimit.ts';
+import {
+  createMidtransSnapTransaction,
+  verifyMidtransSignature,
+} from './src/utils/midtrans.ts';
+import { createClient } from '@supabase/supabase-js';
+import { generateOrderInvoiceNumber } from './src/utils/invoice.ts';
+import { createPlanStateForTier } from './src/utils/subscription.ts';
+
+const supabaseAdmin = process.env.SUPABASE_SERVICE_ROLE_KEY && process.env.SUPABASE_PROJECT_URL
+  ? createClient(process.env.SUPABASE_PROJECT_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, { auth: { autoRefreshToken: false, persistSession: false } })
+  : null; 
+
+function getBearerToken(req: express.Request): string {
+  const value = req.headers.authorization || '';
+  return value.startsWith('Bearer ') ? value.slice(7) : '';
+} 
+
+async function getAuthenticatedCustomer(req: express.Request) {
+  if (!supabaseAdmin) return null;
+  const token = getBearerToken(req);
+  if (!token) return null;
+  const { data } = await supabaseAdmin.auth.getUser(token);
+  return data.user || null;
+} 
+
+async function fulfillMidtransPayment(body: Record<string, unknown>): Promise<boolean> {
+  if (!supabaseAdmin || !verifyMidtransSignature(body as any)) return false;
+  const orderId = String(body.order_id || '');
+  const status = String(body.transaction_status || '');
+  const fraud = String(body.fraud_status || '');
+  const paid = ['settlement', 'capture'].includes(status) && (fraud === '' || fraud === 'accept');
+  if (!paid || !orderId) return true;
+  const { data: request } = await supabaseAdmin.from('upgrade_requests').select('*').eq('request_id', orderId).maybeSingle();
+  if (!request || request.status === 'paid') return true;
+  if (Number(body.gross_amount) !== Number(request.amount_idr)) return false;
+  const nextPlan = createPlanStateForTier(request.requested_plan, getCurrentCycleKey());
+  const { error } = await supabaseAdmin.from('upgrade_requests').update({
+    status: 'paid',
+    payment_method: 'midtrans',
+    payment_note: `Midtrans ${body.payment_type || 'payment'}`,
+    midtrans_transaction_id: String(body.transaction_id || ''),
+    midtrans_payment_type: String(body.payment_type || ''),
+    updated_at: new Date().toISOString()
+  }).eq('request_id', orderId).eq('status', 'pending');
+  if (error) return false;
+  const { error: planError } = await supabaseAdmin.from('user_plans').upsert({ id: request.uid, user_id: request.uid, email: request.email, plan: nextPlan.plan, credits_total: nextPlan.creditsTotal, credits_remaining: nextPlan.creditsRemaining, cycle_key: nextPlan.cycleKey, updated_at: new Date().toISOString() });
+  if (planError) {
+    // Allow Midtrans retry to finish fulfillment when Supabase plan write fails.
+    await supabaseAdmin.from('upgrade_requests').update({ status: 'pending', updated_at: new Date().toISOString() }).eq('request_id', orderId).eq('status', 'paid');
+    return false;
+  }
+  return true;
+} 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -97,6 +150,18 @@ async function startServer() {
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
     res.setHeader('Permissions-Policy', 'camera=(self), microphone=()');
+    res.setHeader(
+      'Content-Security-Policy',
+      "default-src 'self'; " +
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://apis.google.com https://*.firebaseapp.com; " +
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+      "font-src 'self' https://fonts.gstatic.com; " +
+      "img-src 'self' data: blob: https: *.supabase.co *.googleusercontent.com; " +
+      "connect-src 'self' ws: wss: https://*.supabase.co https://*.googleapis.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; " +
+      "frame-src 'self' https://*.firebaseapp.com https://accounts.google.com; " +
+      "media-src 'self' blob:; " +
+      "worker-src 'self' blob:;"
+    );
     next();
   });
 
@@ -128,6 +193,56 @@ async function startServer() {
         nmid: AUTHORITATIVE_MERCHANT_VALIDATION.nmid || POSARA_OFFICIAL_MERCHANT.nmid
       }
     });
+  });
+
+  app.post('/api/midtrans/notification', async (req, res) => {
+    const ok = await fulfillMidtransPayment(req.body || {});
+    res.status(ok ? 200 : 400).json({ ok });
+  });
+
+  app.post('/api/midtrans/create', async (req, res) => {
+    const user = await getAuthenticatedCustomer(req);
+    if (!user || !user.email) {
+      res.status(401).json({ error: 'Login diperlukan sebelum pembayaran.' });
+      return;
+    }
+    const { tier, billingCycle } = req.body || {};
+    if (!isPaidTier(tier) || !isValidBillingCycle(billingCycle)) {
+      res.status(400).json({ error: 'Paket atau siklus pembayaran tidak valid.' });
+      return;
+    }
+    const price = getPlanPriceInfo(tier, billingCycle === 'once' ? 'monthly' : billingCycle);
+    const orderId = generateOrderInvoiceNumber(tier);
+    const request = {
+      request_id: orderId,
+      uid: user.id,
+      email: user.email,
+      display_name: user.user_metadata?.full_name || user.email,
+      requested_plan: tier,
+      billing_cycle: price.billingCycle,
+      amount_idr: price.amountIdr,
+      reference_code: orderId,
+      invoice_number: orderId,
+      payment_note: '',
+      payment_method: 'midtrans',
+      status: 'pending'
+    };
+    if (!supabaseAdmin) {
+      res.status(503).json({ error: 'Supabase server belum dikonfigurasi.' });
+      return;
+    }
+    const { error } = await supabaseAdmin.from('upgrade_requests').insert(request);
+    if (error) {
+      res.status(409).json({ error: 'Gagal membuat order pembayaran.' });
+      return;
+    }
+    try {
+      const transaction = await createMidtransSnapTransaction({ orderId, grossAmount: price.amountIdr, planTier: tier, billingCycle: price.billingCycle, customerName: request.display_name, customerEmail: user.email, appBaseUrl: process.env.APP_URL });
+      res.json({ ...transaction, orderId });
+    } catch (error) {
+      await supabaseAdmin.from('upgrade_requests').delete().eq('request_id', orderId);
+      res.status(502).json({ error: error instanceof Error ? error.message : 'Midtrans tidak tersedia.' });
+    }
   });
 
   app.get('/api/plans', (_req, res) => {

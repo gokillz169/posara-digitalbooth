@@ -10,7 +10,7 @@ import {
 } from '../utils/adminAccess';
 import { PlanTier, getPlanMeta } from '../utils/subscription';
 import { POSARA_OFFICIAL_MERCHANT } from '../utils/qris';
-import { UpgradeRequestRecord } from '../firebase';
+import { UpgradeRequestRecord } from '../supabaseDb';
 import { OrderInvoiceData, buildOrderInvoiceData } from '../utils/invoice';
 import { OrderInvoiceModal } from './OrderInvoiceModal';
 import { TransactionFlowBlueprint } from './TransactionFlowBlueprint';

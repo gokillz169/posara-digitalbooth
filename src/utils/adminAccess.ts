@@ -1,4 +1,6 @@
-export const OWNER_EMAIL = 'mutawakkils16@gmail.com';
+export const OWNER_EMAIL =
+  (typeof import.meta !== 'undefined' && import.meta.env?.VITE_OWNER_EMAIL) ||
+  'mutawakkils16@gmail.com';
 export const COMPLIMENTARY_STUDIO_EMAILS = [
   OWNER_EMAIL,
   'fitriyaninovitasari8@gmail.com'

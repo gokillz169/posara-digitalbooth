@@ -18,7 +18,7 @@ Platform photobooth digital berbasis web dengan koleksi template strip, filter e
 | --- | --- | --- | --- |
 | **Gratis / Free** | Rp 0 / bulan | 20 kredit / bulan | Hasil 72 DPI bersih tanpa watermark |
 | **Weekend Pass** | Rp 5.000 (sekali bayar) | 50 kredit | Buka seluruh template, filter, motif, ZIP, & 300 DPI |
-| **Creator Pass** | Rp 10.000 / bulan | 500 kredit | Buka seluruh fitur premium & 300 DPI |
+| **Creator Pass** | Rp 15.000 / bulan | 500 kredit | Buka seluruh fitur premium & 300 DPI |
 | **Studio Pro / Unlimited** | Rp 15.000 / bulan | Unlimited | Cetak studio hingga 600 DPI & custom event branding |
 
 *(Pembayaran tahunan untuk Creator Pass & Studio Pro tersedia dengan hemat 20%.)*

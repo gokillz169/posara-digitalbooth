@@ -1,7 +1,7 @@
 import { BillingCycle, PlanTier, getPlanMeta, getPlanPriceInfo } from './subscription';
 import { POSARA_OFFICIAL_MERCHANT } from './qris';
 
-export type InvoiceStatus = 'unpaid' | 'pending' | 'approved' | 'rejected';
+export type InvoiceStatus = 'unpaid' | 'pending' | 'approved' | 'rejected' | 'paid';
 
 export interface OrderInvoiceData {
   invoiceNumber: string;
@@ -79,6 +79,7 @@ export function formatInvoiceTimestampWib(timestampMs: number): string {
 export function getInvoiceStatusLabel(status: InvoiceStatus): string {
   switch (status) {
     case 'approved':
+    case 'paid':
       return 'LUNAS · PAKET AKTIF';
     case 'rejected':
       return 'DITOLAK';

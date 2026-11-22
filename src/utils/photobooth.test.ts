@@ -22,10 +22,10 @@ test('generateSessionCode outputs standard PS-NNNNA format', () => {
 });
 
 test('calculateYearlyDiscount calculates 20% discount accurately for Creator Pass & Studio Pro', () => {
-  const creator = calculateYearlyDiscount(10000, 20);
-  assert.equal(creator.monthlyEquivalent, 8000);
-  assert.equal(creator.annualTotal, 8000 * 12);
-  assert.equal(creator.totalSaved, (10000 * 12) - (8000 * 12));
+  const creator = calculateYearlyDiscount(15000, 20);
+  assert.equal(creator.monthlyEquivalent, 12000);
+  assert.equal(creator.annualTotal, 12000 * 12);
+  assert.equal(creator.totalSaved, (15000 * 12) - (12000 * 12));
 
   const studio = calculateYearlyDiscount(15000, 20);
   assert.equal(studio.monthlyEquivalent, 12000);
