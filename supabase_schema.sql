@@ -40,6 +40,20 @@ CREATE TABLE IF NOT EXISTS public.upgrade_requests (
 ALTER TABLE public.upgrade_requests ADD COLUMN IF NOT EXISTS midtrans_transaction_id TEXT DEFAULT '';
 ALTER TABLE public.upgrade_requests ADD COLUMN IF NOT EXISTS midtrans_payment_type TEXT DEFAULT '';
 
+-- 3. Table: visitor_feedback (Pesan dan kesan pengunjung untuk evaluasi)
+CREATE TABLE IF NOT EXISTS public.visitor_feedback (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name TEXT NOT NULL DEFAULT 'Pengunjung' CHECK (char_length(name) <= 80),
+    message TEXT NOT NULL CHECK (char_length(message) BETWEEN 1 AND 1000),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now())
+);
+
+ALTER TABLE public.visitor_feedback ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Public can submit visitor feedback" ON public.visitor_feedback;
+CREATE POLICY "Public can submit visitor feedback" ON public.visitor_feedback FOR INSERT TO public WITH CHECK (true);
+DROP POLICY IF EXISTS "Owner can read visitor feedback" ON public.visitor_feedback;
+CREATE POLICY "Owner can read visitor feedback" ON public.visitor_feedback FOR SELECT TO public USING (true);
+
 -- 3. Table: booth_settings (Konfigurasi Kiosk, PIN, Watermark, & Event Branding)
 CREATE TABLE IF NOT EXISTS public.booth_settings (
     id TEXT PRIMARY KEY DEFAULT 'main',

@@ -88,14 +88,36 @@ export function onSupabaseAuthStateChanged(callback: (user: AppUser | null) => v
 }
 
 export async function signInWithGoogleSupabase(): Promise<void> {
-  if (!supabase) throw new Error('Supabase client belum terkonfigurasi.');
+  if (!supabase) {
+    throw new Error('Supabase client belum terkonfigurasi. Periksa VITE_SUPABASE_URL dan VITE_SUPABASE_ANON_KEY.');
+  }
+
+  // Keep callback on current app route. This must also exist in Supabase
+  // Dashboard > Authentication > URL Configuration > Redirect URLs.
+  const redirectTo = `${window.location.origin}${window.location.pathname}`;
   const { error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
-    options: {
-      redirectTo: window.location.origin
-    }
+    options: { redirectTo }
   });
-  if (error) throw error;
+
+  if (error) {
+    const errorMessage = `${error.message || ''} ${error.code || ''}`.toLowerCase();
+    if (
+      errorMessage.includes('unsupported provider') ||
+      errorMessage.includes('provider is not enabled') ||
+      errorMessage.includes('google provider')
+    ) {
+      throw new Error(
+        'Login Google belum aktif. Aktifkan Google di Supabase Authentication > Providers, lalu isi Client ID dan Client Secret.'
+      );
+    }
+    if (errorMessage.includes('redirect') || errorMessage.includes('url not allowed')) {
+      throw new Error(
+        `URL callback belum diizinkan Supabase: ${redirectTo}. Tambahkan URL ini di Authentication > URL Configuration > Redirect URLs.`
+      );
+    }
+    throw error;
+  }
 }
 
 export async function signOutSupabase(): Promise<void> {

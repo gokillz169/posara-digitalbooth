@@ -88,6 +88,13 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   const approvedRequests = upgradeRequests.filter((r) => r.status === 'approved');
   const pendingRequests = upgradeRequests.filter((r) => r.status === 'pending');
   const totalRevenueIdr = approvedRequests.reduce((sum, r) => sum + (r.amountIdr || 0), 0);
+  const feedbackItems = (() => {
+    try {
+      return JSON.parse(localStorage.getItem('posara_feedback_v1') || '[]') as Array<{ id: string; name: string; message: string; createdAt: string }>;
+    } catch {
+      return [];
+    }
+  })();
 
   const handleLockKiosk = () => {
     onSetKioskLocked(true);
@@ -352,6 +359,24 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             {kioskLocked ? 'Mode Kiosk Aktif' : 'Siap Kelola'}
           </span>
         </div>
+      </section>
+
+      {/* Visitor Feedback */}
+      <section className="mt-4 p-4 rounded-3xl bg-white border border-[#e2e8f0] shadow-xs">
+        <div className="flex items-center justify-between mb-3">
+          <div>
+            <h2 className="font-headline text-[17px] font-bold text-[#001632]">Pesan dan Kesan Pengunjung</h2>
+            <p className="text-[12px] text-[#516070]">{feedbackItems.length} masukan tersimpan di browser ini.</p>
+          </div>
+          <span className="material-symbols-outlined text-[#142b4a]">rate_review</span>
+        </div>
+        {feedbackItems.length === 0 && <p className="text-sm text-[#516070]">Belum ada pesan masuk.</p>}
+        {feedbackItems.length > 0 && <div className="space-y-2 max-h-80 overflow-y-auto">
+          {feedbackItems.map((item) => <article key={item.id} className="rounded-xl bg-[#f8fafc] border border-[#e2e8f0] p-3">
+            <div className="flex justify-between gap-2 text-[11px] text-[#516070]"><strong className="text-[#142b4a]">{item.name}</strong><time>{new Date(item.createdAt).toLocaleString('id-ID')}</time></div>
+            <p className="text-[13px] text-[#001632] mt-1 whitespace-pre-wrap">{item.message}</p>
+          </article>)}
+        </div>}
       </section>
 
       {/* Owner Private Access Guide & Kiosk PIN Settings */}

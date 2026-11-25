@@ -147,27 +147,31 @@ export function normalizeMonthlyPlanState(
 }
 
 export function hasAvailableCredits(state: UserPlanState): boolean {
-  if (getPlanMeta(state.plan).isUnlimited) {
+  const meta = getPlanMeta(state.plan);
+  if (meta.isUnlimited) {
     return true;
   }
-  return state.creditsRemaining > 0;
+  const cost = state.plan === 'free' ? 3 : 2;
+  return state.creditsRemaining >= cost;
 }
 
 export function consumePlanCredit(state: UserPlanState): {
   allowed: boolean;
   nextState: UserPlanState;
 } {
-  if (getPlanMeta(state.plan).isUnlimited) {
+  const meta = getPlanMeta(state.plan);
+  if (meta.isUnlimited) {
     return { allowed: true, nextState: state };
   }
-  if (state.creditsRemaining <= 0) {
+  const cost = state.plan === 'free' ? 3 : 2;
+  if (state.creditsRemaining < cost) {
     return { allowed: false, nextState: state };
   }
   return {
     allowed: true,
     nextState: {
       ...state,
-      creditsRemaining: state.creditsRemaining - 1
+      creditsRemaining: state.creditsRemaining - cost
     }
   };
 }

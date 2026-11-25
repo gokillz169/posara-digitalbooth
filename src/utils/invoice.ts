@@ -84,9 +84,9 @@ export function getInvoiceStatusLabel(status: InvoiceStatus): string {
     case 'rejected':
       return 'DITOLAK';
     case 'pending':
-      return 'MENUNGGU VERIFIKASI MUTASI';
+      return 'MENUNGGU KONFIRMASI MIDTRANS';
     default:
-      return 'MENUNGGU PEMBAYARAN QRIS';
+      return 'MENUNGGU PEMBAYARAN MIDTRANS';
   }
 }
 

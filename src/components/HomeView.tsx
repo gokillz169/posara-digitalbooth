@@ -18,6 +18,26 @@ export const HomeView: React.FC<HomeViewProps> = ({
   onRequestUpgrade
 }) => {
   const favoriteTemplates = PHOTO_TEMPLATES.slice(0, 6);
+  const [feedbackName, setFeedbackName] = React.useState('');
+  const [feedbackMessage, setFeedbackMessage] = React.useState('');
+  const [feedbackSent, setFeedbackSent] = React.useState(false);
+
+  const handleFeedbackSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const message = feedbackMessage.trim();
+    if (!message) return;
+    const stored = JSON.parse(localStorage.getItem('posara_feedback_v1') || '[]') as Array<Record<string, unknown>>;
+    stored.unshift({
+      id: crypto.randomUUID(),
+      name: feedbackName.trim() || 'Pengunjung',
+      message,
+      createdAt: new Date().toISOString()
+    });
+    localStorage.setItem('posara_feedback_v1', JSON.stringify(stored.slice(0, 200)));
+    setFeedbackName('');
+    setFeedbackMessage('');
+    setFeedbackSent(true);
+  };
 
   return (
     <div className="flex flex-col w-full pb-28">
@@ -69,7 +89,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
           <div className="relative mx-auto transition-transform duration-300 hover:rotate-[-1deg]">
             {/* Floating Sticker Badges */}
-            <div className="absolute -top-3 right-3 bg-[#142b4a] text-white text-[9px] font-bold px-2.5 py-1 rounded-full shadow-md flex items-center gap-1 rotate-6 z-20">
+            <div className="absolute top-1 right-2 bg-[#142b4a] text-white text-[9px] font-bold px-2.5 py-1 rounded-full shadow-md flex items-center gap-1 rotate-6 z-20">
               <span className="material-symbols-outlined text-[11px] text-[#e6dffb]">confirmation_number</span>
               <span>★ VIP MEMORY</span>
             </div>
@@ -182,6 +202,30 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
+      {/* Feedback Section */}
+      <section className="mt-8 px-4 sm:px-6 max-w-xl mx-auto w-full">
+        <div className="rounded-2xl bg-white border border-[#e2e8f0] p-5 shadow-sm">
+          <div className="flex items-start gap-3 mb-4">
+            <div className="w-10 h-10 rounded-xl bg-[#e6dffb] text-[#142b4a] flex items-center justify-center">
+              <span className="material-symbols-outlined">rate_review</span>
+            </div>
+            <div>
+              <h2 className="font-headline text-[20px] font-bold text-[#001632]">Pesan dan Kesan</h2>
+              <p className="text-[13px] text-[#516070] mt-0.5">Bagikan pengalamanmu agar POSARA bisa terus dievaluasi.</p>
+            </div>
+          </div>
+          <form onSubmit={handleFeedbackSubmit} className="space-y-3">
+            <input value={feedbackName} onChange={(event) => setFeedbackName(event.target.value)} maxLength={80} placeholder="Nama (opsional)" className="w-full rounded-xl border border-[#dbe3ee] px-3 py-2.5 text-sm outline-none focus:border-[#142b4a]" />
+            <textarea required value={feedbackMessage} onChange={(event) => { setFeedbackMessage(event.target.value); setFeedbackSent(false); }} maxLength={1000} rows={4} placeholder="Tulis pesan dan kesanmu..." className="w-full rounded-xl border border-[#dbe3ee] px-3 py-2.5 text-sm outline-none focus:border-[#142b4a] resize-none" />
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-[12px] text-[#516070]">Maksimal 1.000 karakter</span>
+              <button type="submit" className="rounded-xl bg-[#142b4a] px-4 py-2.5 text-sm font-bold text-white hover:bg-[#001632]">Kirim Pesan</button>
+            </div>
+            {feedbackSent && <p role="status" className="text-sm font-semibold text-emerald-700">Pesan berhasil dikirim. Terima kasih atas masukannya.</p>}
+          </form>
+        </div>
+      </section>
+
       {/* Template Showcase Section */}
       <section className="mt-4 px-4 sm:px-6 max-w-4xl mx-auto w-full">
         <div className="flex items-end justify-between mb-3">
@@ -209,13 +253,13 @@ export const HomeView: React.FC<HomeViewProps> = ({
             return (
               <div
                 key={template.id}
-                className="min-w-[225px] max-w-[240px] bg-[#ffffff] rounded-2xl p-3.5 border border-[#e2e8f0] shadow-sm flex flex-col justify-between snap-start hover:shadow-md transition-shadow relative"
+                className="min-w-[225px] max-w-[240px] bg-[#ffffff] rounded-2xl p-4 border border-[#e2e8f0] shadow-sm flex flex-col justify-between snap-start hover:shadow-md transition-shadow relative"
               >
                 <div>
-                  <div className="mb-3 relative">
+                  <div className="mb-3 relative pt-1">
                     <StripTemplateArtwork template={template} compact />
                     {locked && (
-                      <div className="absolute top-2 right-2 px-2 py-1 rounded-full bg-[#001632]/85 text-white text-[10px] font-bold flex items-center gap-1 shadow-sm">
+                      <div className="absolute top-3 right-3 px-2 py-1 rounded-full bg-[#001632]/85 text-white text-[10px] font-bold flex items-center gap-1 shadow-sm z-10">
                         <span className="material-symbols-outlined text-[13px]">lock</span>
                         <span>PRO</span>
                       </div>
@@ -231,7 +275,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   <h3 className="font-headline text-[15px] text-[#001632] font-bold">
                     {template.name}
                   </h3>
-                  <p className="text-[12px] text-[#516070] mt-0.5 leading-snug line-clamp-2">
+                  <p className="text-[12px] text-[#516070] mt-0.5 leading-snug min-h-[2.5rem]">
                     {template.description}
                   </p>
                 </div>
@@ -264,18 +308,18 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </section>
 
       {/* How It Works (3 Langkah Cepat) */}
-      <section className="mt-8 px-4 sm:px-6 max-w-4xl mx-auto w-full">
-        <div className="bg-[#f0f3ff] rounded-3xl p-5 sm:p-6 border border-[#e2e8f0]/80">
-          <div className="text-center mb-5">
+      <section className="mt-8 px-4 sm:px-6 max-w-4xl mx-auto w-full py-6 sm:py-8">
+        <div className="bg-[#f0f3ff] rounded-3xl p-6 sm:p-8 border border-[#e2e8f0]/80">
+          <div className="text-center mb-6">
             <span className="text-[11px] font-bold text-[#516070] uppercase tracking-wider">
               Sangat Mudah
             </span>
-            <h2 className="font-headline text-[22px] text-[#001632] font-extrabold mt-0.5">
+            <h2 className="font-headline text-[22px] sm:text-[26px] text-[#001632] font-extrabold mt-0.5">
               3 Langkah, Langsung Jadi!
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Step 1 */}
             <div className="flex items-start gap-3 bg-[#ffffff] p-4 rounded-2xl shadow-sm border border-[#e2e8f0]/60">
               <div className="w-10 h-10 rounded-xl bg-[#d5e4f8] text-[#142b4a] flex items-center justify-center shrink-0">
@@ -328,80 +372,89 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </section>
 
       {/* Kenapa Memilih POSARA? (Fitur Unggulan) */}
-      <section className="mt-8 px-4 sm:px-6 max-w-4xl mx-auto w-full">
-        <div className="mb-4 text-center">
+      <section className="mt-8 px-4 sm:px-6 max-w-4xl mx-auto w-full py-6 sm:py-8">
+        <div className="mb-6 text-center">
           <span className="text-[11px] font-bold text-[#516070] uppercase tracking-wider">
             Kelebihan
           </span>
-          <h2 className="font-headline text-[22px] text-[#001632] font-extrabold mt-0.5">
+          <h2 className="font-headline text-[22px] sm:text-[26px] text-[#001632] font-extrabold mt-0.5">
             Kenapa Memilih POSARA?
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <div className="bg-[#ffffff] p-4 rounded-2xl border border-[#e2e8f0] shadow-sm flex flex-col justify-between">
-            <div className="w-9 h-9 rounded-lg bg-[#f0f3ff] flex items-center justify-center text-[#142b4a] mb-2.5">
-              <span className="material-symbols-outlined text-[20px]">public</span>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="bg-[#ffffff] p-5 rounded-2xl border border-[#e2e8f0] shadow-sm flex flex-col justify-between">
+            <div className="w-10 h-10 rounded-xl bg-[#f0f3ff] flex items-center justify-center text-[#142b4a] mb-3">
+              <span className="material-symbols-outlined text-[22px]">public</span>
             </div>
             <div>
-              <h3 className="text-[13px] text-[#001632] font-bold leading-tight">Langsung di Browser</h3>
-              <p className="text-[11px] text-[#516070] mt-1 leading-snug">Nggak perlu download app tambahan, buka link langsung jepret.</p>
+              <h3 className="text-[14px] text-[#001632] font-bold leading-tight">Langsung di Browser</h3>
+              <p className="text-[12px] text-[#516070] mt-1.5 leading-snug">Nggak perlu download app tambahan, buka link langsung jepret.</p>
             </div>
           </div>
 
-          <div className="bg-[#ffffff] p-4 rounded-2xl border border-[#e2e8f0] shadow-sm flex flex-col justify-between">
-            <div className="w-9 h-9 rounded-lg bg-[#e6dffb] flex items-center justify-center text-[#142b4a] mb-2.5">
-              <span className="material-symbols-outlined text-[20px]">palette</span>
+          <div className="bg-[#ffffff] p-5 rounded-2xl border border-[#e2e8f0] shadow-sm flex flex-col justify-between">
+            <div className="w-10 h-10 rounded-xl bg-[#e6dffb] flex items-center justify-center text-[#142b4a] mb-3">
+              <span className="material-symbols-outlined text-[22px]">palette</span>
             </div>
             <div>
-              <h3 className="text-[13px] text-[#001632] font-bold leading-tight">Filter Estetik & Grain</h3>
-              <p className="text-[11px] text-[#516070] mt-1 leading-snug">Koleksi tone retro 90s, Y2K soft, hingga monokrom tajam.</p>
+              <h3 className="text-[14px] text-[#001632] font-bold leading-tight">Filter Estetik & Grain</h3>
+              <p className="text-[12px] text-[#516070] mt-1.5 leading-snug">Koleksi tone retro 90s, Y2K soft, hingga monokrom tajam.</p>
             </div>
           </div>
 
-          <div className="bg-[#ffffff] p-4 rounded-2xl border border-[#e2e8f0] shadow-sm flex flex-col justify-between">
-            <div className="w-9 h-9 rounded-lg bg-[#d5e4f8] flex items-center justify-center text-[#142b4a] mb-2.5">
-              <span className="material-symbols-outlined text-[20px]">sentiment_very_satisfied</span>
+          <div className="bg-[#ffffff] p-5 rounded-2xl border border-[#e2e8f0] shadow-sm flex flex-col justify-between">
+            <div className="w-10 h-10 rounded-xl bg-[#d5e4f8] flex items-center justify-center text-[#142b4a] mb-3">
+              <span className="material-symbols-outlined text-[22px]">sentiment_very_satisfied</span>
             </div>
             <div>
-              <h3 className="text-[13px] text-[#001632] font-bold leading-tight">Stiker & Personalisasi</h3>
-              <p className="text-[11px] text-[#516070] mt-1 leading-snug">Hias strip fotomu dengan date stamp, caption, dan stiker imut.</p>
+              <h3 className="text-[14px] text-[#001632] font-bold leading-tight">Stiker & Personalisasi</h3>
+              <p className="text-[12px] text-[#516070] mt-1.5 leading-snug">Hias strip fotomu dengan date stamp, caption, dan stiker imut.</p>
             </div>
           </div>
 
-          <div className="bg-[#ffffff] p-4 rounded-2xl border border-[#e2e8f0] shadow-sm flex flex-col justify-between">
-            <div className="w-9 h-9 rounded-lg bg-[#d5e4f8] flex items-center justify-center text-[#142b4a] mb-2.5">
-              <span className="material-symbols-outlined text-[20px]">verified_user</span>
+          <div className="bg-[#ffffff] p-5 rounded-2xl border border-[#e2e8f0] shadow-sm flex flex-col justify-between">
+            <div className="w-10 h-10 rounded-xl bg-[#d5e4f8] flex items-center justify-center text-[#142b4a] mb-3">
+              <span className="material-symbols-outlined text-[22px]">verified_user</span>
             </div>
             <div>
-              <h3 className="text-[13px] text-[#001632] font-bold leading-tight">Privasi Aman 100%</h3>
-              <p className="text-[11px] text-[#516070] mt-1 leading-snug">Foto diproses di perangkatmu sendiri tanpa diunggah ke server asing.</p>
+              <h3 className="text-[14px] text-[#001632] font-bold leading-tight">Privasi Aman 100%</h3>
+              <p className="text-[12px] text-[#516070] mt-1.5 leading-snug">Foto diproses di perangkatmu sendiri tanpa diunggah ke server asing.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Banner Bottom */}
-      <section className="mt-8 px-4 sm:px-6 max-w-4xl mx-auto w-full">
-        <div className="relative bg-[#d5e4f8] text-[#142b4a] rounded-3xl p-6 overflow-hidden border border-[#b9c8db]/60 shadow-sm">
-          <div className="absolute -right-8 -top-8 w-36 h-36 bg-[#b2c7ee] rounded-full opacity-40 pointer-events-none"></div>
+      <section className="mt-8 px-4 sm:px-6 max-w-4xl mx-auto w-full py-6 sm:py-8">
+        <div className="relative bg-[#d5e4f8] text-[#142b4a] rounded-3xl p-6 sm:p-8 overflow-hidden border border-[#b9c8db]/60 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="absolute -right-8 -top-8 w-44 h-44 bg-[#b2c7ee] rounded-full opacity-40 pointer-events-none"></div>
           <div className="relative z-10 flex flex-col items-start max-w-lg">
             <div className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-[#142b4a] bg-white/80 px-2.5 py-0.5 rounded-full mb-2">
               <span>📸 Siap Foto?</span>
             </div>
-            <h2 className="font-headline text-[22px] sm:text-[26px] text-[#001632] font-extrabold leading-tight mb-2">
+            <h2 className="font-headline text-[22px] sm:text-[28px] text-[#001632] font-extrabold leading-tight mb-2">
               Sudah siap mengabadikan momen serumu?
             </h2>
-            <p className="text-[13px] sm:text-[14px] text-[#516070] mb-5 leading-normal">
+            <p className="text-[13px] sm:text-[15px] text-[#516070] mb-5 leading-normal">
               Mulai sesi fotomu sekarang bersama teman atau solo, gratis dan langsung jadi!
             </p>
             <button
               onClick={() => onNavigate('photobooth-kamera')}
-              className="inline-flex items-center justify-center gap-2 bg-[#142b4a] hover:bg-[#001632] text-white font-bold text-[14px] px-6 py-3 rounded-xl shadow-md active:translate-y-[1px] transition-all cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 bg-[#142b4a] hover:bg-[#001632] text-white font-bold text-[14px] px-6 py-3.5 rounded-xl shadow-md active:translate-y-[1px] transition-all cursor-pointer"
             >
-              <span className="material-symbols-outlined text-[18px]">play_arrow</span>
+              <span className="material-symbols-outlined text-[20px]">play_arrow</span>
               <span>Mulai Photobooth Sekarang</span>
             </button>
+          </div>
+          
+          {/* Visual Graphic Element for CTA Section */}
+          <div className="relative z-10 shrink-0 w-32 h-32 sm:w-40 sm:h-40 rounded-2xl bg-white/90 shadow-md border border-white/60 p-2 flex flex-col items-center justify-center text-center transform rotate-2">
+            <div className="w-full h-full rounded-xl bg-[#f0f3ff] flex flex-col items-center justify-center p-2 border border-[#142b4a]/10">
+              <span className="material-symbols-outlined text-[36px] text-[#142b4a] mb-1">photo_camera_front</span>
+              <span className="font-headline text-[11px] font-bold text-[#001632]">POSARA STUDIO</span>
+              <span className="text-[9px] text-[#516070] font-mono">READY TO SNAP</span>
+            </div>
           </div>
         </div>
       </section>

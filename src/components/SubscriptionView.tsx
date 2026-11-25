@@ -787,7 +787,7 @@ export const SubscriptionView: React.FC<SubscriptionViewProps> = ({
           </div>
         </div>
 
-        {/* 5. Payment Channels & Real Upgrade Request History */}
+        {/* 5. Midtrans Payment Channels & Invoice History */}
         <div className="bg-[#ffffff] rounded-3xl p-5 border border-[#e2e8f0] shadow-sm space-y-3 my-2">
           <div className="flex items-center justify-between">
             <div>
@@ -795,7 +795,7 @@ export const SubscriptionView: React.FC<SubscriptionViewProps> = ({
                 Metode Pembayaran & Riwayat Pengajuan
               </h2>
               <p className="text-[12px] text-[#516070]">
-                Mendukung QRIS Nasional, GoPay, Dana & ShopeePay
+                Midtrans: QRIS, GoPay, ShopeePay & Virtual Account bank
               </p>
             </div>
             <span className="material-symbols-outlined text-[#516070] text-[22px]">qr_code_2</span>
@@ -811,7 +811,7 @@ export const SubscriptionView: React.FC<SubscriptionViewProps> = ({
                   QRIS Nasional & E-Wallet
                 </p>
                 <p className="text-[11px] text-[#516070]">
-                  Aktivasi diverifikasi oleh Owner setelah konfirmasi kode referensi
+                  Pembayaran diverifikasi otomatis oleh Midtrans; paket aktif setelah status settlement
                 </p>
               </div>
             </div>
@@ -824,7 +824,7 @@ export const SubscriptionView: React.FC<SubscriptionViewProps> = ({
                 Belum ada riwayat transaksi langganan
               </p>
               <p className="text-[11px] text-[#516070]">
-                Pengajuan upgrade QRIS dan status verifikasinya akan tampil otomatis di sini.
+                Invoice dan status pembayaran Midtrans akan tampil otomatis di sini.
               </p>
             </div>
           ) : (

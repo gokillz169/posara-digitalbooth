@@ -169,14 +169,14 @@ export const OrderInvoiceModal: React.FC<OrderInvoiceModalProps> = ({ invoice, o
   if (!invoice) return null;
 
   const statusTone =
-    invoice.status === 'approved'
+    (invoice.status === 'approved' || invoice.status === 'paid')
       ? 'bg-emerald-50 text-emerald-900 border-emerald-200'
       : invoice.status === 'rejected'
       ? 'bg-red-50 text-red-900 border-red-200'
       : 'bg-amber-50 text-amber-950 border-amber-200';
 
   const statusIcon =
-    invoice.status === 'approved'
+    (invoice.status === 'approved' || invoice.status === 'paid')
       ? 'check_circle'
       : invoice.status === 'rejected'
       ? 'cancel'

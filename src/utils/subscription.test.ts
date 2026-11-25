@@ -67,11 +67,11 @@ test('getPlanPriceInfo and generateUpgradeReferenceCode compute valid IDR totals
   assert.ok(code.length >= 4 && code.length <= 32);
 });
 
-test('consumePlanCredit deducts 1 credit until 0 and blocks when exhausted', () => {
-  let state = {
+test('free export costs 3 credits and blocks below the required balance', () => {
+  const state = {
     plan: 'free' as const,
     creditsTotal: 20,
-    creditsRemaining: 1,
+    creditsRemaining: 3,
     cycleKey: '2026-11'
   };
   assert.equal(hasAvailableCredits(state), true);
@@ -84,6 +84,23 @@ test('consumePlanCredit deducts 1 credit until 0 and blocks when exhausted', () 
   const second = consumePlanCredit(first.nextState);
   assert.equal(second.allowed, false);
   assert.equal(second.nextState.creditsRemaining, 0);
+
+  const insufficient = { ...state, creditsRemaining: 2 };
+  assert.equal(hasAvailableCredits(insufficient), false);
+  assert.equal(consumePlanCredit(insufficient).allowed, false);
+});
+
+test('premium export costs 2 credits', () => {
+  const state = {
+    plan: 'creator' as const,
+    creditsTotal: 500,
+    creditsRemaining: 4,
+    cycleKey: '2026-11'
+  };
+  const result = consumePlanCredit(state);
+  assert.equal(result.allowed, true);
+  assert.equal(result.nextState.creditsRemaining, 2);
+  assert.equal(consumePlanCredit({ ...state, creditsRemaining: 1 }).allowed, false);
 });
 
 test('studio unlimited plan never runs out of credits and survives month rollovers', () => {

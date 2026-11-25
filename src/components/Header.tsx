@@ -83,7 +83,7 @@ export const Header: React.FC<HeaderProps> = ({
         <button
           type="button"
           onClick={handleLogoClick}
-          className="flex items-center gap-2.5 active:scale-95 transition-transform text-left cursor-pointer"
+          className="flex items-center gap-2.5 active:scale-95 transition-transform text-left cursor-pointer shrink-0 whitespace-nowrap"
           aria-label="Kembali ke Beranda"
         >
           <div className="w-9 h-9 rounded-xl bg-[#142b4a] text-white flex items-center justify-center shadow-sm">

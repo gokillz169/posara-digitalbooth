@@ -72,6 +72,8 @@ export const AdminAccessGate: React.FC<AdminAccessGateProps> = ({
         setAuthError('Popup login diblokir browser. Izinkan popup lalu coba lagi.');
       } else if (message.includes('unauthorized-domain')) {
         setAuthError('Domain ini belum terdaftar di daftar redirect URL Supabase Auth.');
+      } else if (message.includes('Login Google belum diaktifkan')) {
+        setAuthError(message);
       } else {
         setAuthError('Gagal masuk dengan akun Google. Silakan coba lagi.');
       }
@@ -92,7 +94,9 @@ export const AdminAccessGate: React.FC<AdminAccessGateProps> = ({
         setAuthError(
           message.includes('popup-blocked')
             ? 'Popup login diblokir browser. Izinkan popup lalu coba lagi.'
-            : 'Gagal mengganti akun Google. Silakan coba lagi.'
+            : message.includes('Login Google belum diaktifkan')
+              ? message
+              : 'Gagal mengganti akun Google. Silakan coba lagi.'
         );
       }
     } finally {
